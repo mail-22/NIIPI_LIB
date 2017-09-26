@@ -3,7 +3,7 @@ inherited GridForm: TGridForm
   Top = 245
   Width = 1359
   Height = 783
-  Caption = 'GridForm'
+  Caption = ''
   PixelsPerInch = 96
   TextHeight = 17
   object pnlT: TPanel [0]
@@ -322,7 +322,7 @@ inherited GridForm: TGridForm
           Height = 13
           Align = alTop
           Alignment = taCenter
-          Caption = #1089#1087#1080#1089#1086#1082' '#1074#1089#1077#1093' '#1079#1072#1087#1080#1089#1077#1081' '#1086' '#1088#1072#1073#1086#1090#1072#1093
+          Caption = #1089#1087#1080#1089#1086#1082' '#1074#1089#1077#1093' '#1079#1072#1087#1080#1089#1077#1081' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -487,10 +487,11 @@ inherited GridForm: TGridForm
             NavigatorButtons.ConfirmDelete = False
             FilterBox.Visible = fvAlways
             DataController.DataSource = DM.dsReport
+            DataController.Filter.PercentWildcard = '*'
+            DataController.Filter.UnderscoreWildcard = '?'
             DataController.Summary.DefaultGroupSummaryItems = <>
             DataController.Summary.FooterSummaryItems = <>
             DataController.Summary.SummaryGroups = <>
-            FilterRow.Visible = True
             OptionsCustomize.ColumnHiding = True
             OptionsCustomize.ColumnsQuickCustomization = True
             OptionsCustomize.DataRowSizing = True
@@ -567,6 +568,7 @@ inherited GridForm: TGridForm
             end
             object cxgrd1DBBandedTableView1L_Kluchevye_poly: TcxGridDBBandedColumn
               DataBinding.FieldName = 'L_Kluchevye_poly'
+              PropertiesClassName = 'TcxTextEditProperties'
               Position.BandIndex = 0
               Position.ColIndex = 7
               Position.RowIndex = 0
@@ -592,9 +594,9 @@ inherited GridForm: TGridForm
           BorderStyle = bsSingle
           TabOrder = 1
           object cxDBNavigator3: TcxDBNavigator
-            Left = 206
+            Left = 259
             Top = 2
-            Width = 1065
+            Width = 1020
             Height = 23
             DataSource = DM.dsReport
             Align = alClient
@@ -603,7 +605,7 @@ inherited GridForm: TGridForm
           object pnl3: TPanel
             Left = 187
             Top = 2
-            Width = 19
+            Width = 72
             Height = 23
             Align = alLeft
             AutoSize = True
@@ -612,7 +614,7 @@ inherited GridForm: TGridForm
             object jvdbstslbl1: TJvDBStatusLabel
               Left = 0
               Top = 3
-              Width = 19
+              Width = 72
               Height = 17
               DataSource = DM.dsReport
               Style = lsRecordNo
@@ -632,39 +634,20 @@ inherited GridForm: TGridForm
             object JvDBStatusLabel3: TJvDBStatusLabel
               Left = 0
               Top = 0
-              Width = 142
+              Width = 128
               Height = 23
               DataSource = DM.dsReport
               CalcRecCount = True
-              ShowOptions = doBoth
+              ShowOptions = doGlyph
               Align = alLeft
               Alignment = taRightJustify
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Times New Roman'
+              Font.Style = []
+              ParentFont = False
             end
-          end
-        end
-        object pnlFind: TPanel
-          Left = 776
-          Top = 0
-          Width = 241
-          Height = 41
-          Caption = 'pnlFind'
-          TabOrder = 2
-          object edtFind: TEdit
-            Left = 32
-            Top = 8
-            Width = 121
-            Height = 25
-            TabOrder = 0
-            Text = 'edtFind'
-          end
-          object btnFind: TButton
-            Left = 168
-            Top = 8
-            Width = 75
-            Height = 25
-            Caption = 'btnFind'
-            TabOrder = 1
-            OnClick = btnFindClick
           end
         end
       end
@@ -708,6 +691,41 @@ inherited GridForm: TGridForm
     Font.Name = 'Tahoma'
     Font.Style = []
   end
+  object pnlFind: TPanel [4]
+    Left = 720
+    Top = 0
+    Width = 473
+    Height = 26
+    Hint = #1087#1086#1080#1089#1082' '#1087#1086' '#1082#1083#1102#1095#1077#1074#1099#1084' '#1087#1086#1083#1103#1084
+    TabOrder = 4
+    object edtFind: TEdit
+      Left = 208
+      Top = 1
+      Width = 121
+      Height = 25
+      TabOrder = 0
+      OnChange = edtFindChange
+    end
+    object btnFind: TButton
+      Left = 352
+      Top = 1
+      Width = 75
+      Height = 25
+      Caption = #1085#1072#1081#1090#1080
+      TabOrder = 1
+      OnClick = btnFindClick
+    end
+    object mmo1: TMemo
+      Left = 1
+      Top = 1
+      Width = 185
+      Height = 24
+      Align = alLeft
+      Lines.Strings = (
+        #1087#1086#1080#1089#1082' '#1087#1086' '#1082#1083#1102#1095#1077#1074#1099#1084' '#1087#1086#1083#1103#1084)
+      TabOrder = 2
+    end
+  end
   inherited jvfrmstrg1: TJvFormStorage
     Left = 120
     Top = 20
@@ -721,15 +739,6 @@ inherited GridForm: TGridForm
           end
           item
             Action = actEdit
-          end
-          item
-            Action = acOle
-          end
-          item
-            Action = actDep
-          end
-          item
-            Action = actEmpl
           end
           item
             Action = actTun

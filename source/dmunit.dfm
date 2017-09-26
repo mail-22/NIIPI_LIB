@@ -301,7 +301,6 @@ object DM: TDM
     Connection = UniConnection1
     SQL.Strings = (
       'select * from r1;')
-    Active = True
     Left = 224
     Top = 40
     object tblReport2id: TIntegerField

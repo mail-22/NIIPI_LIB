@@ -115,6 +115,11 @@ begin
   vTask[High(vTask)].TypeOfTask := Dogovor;
   cTask[Dogovor].TypeOfTask := Dogovor;
   cTask[Dogovor].strTypeOfTask := 'договор';
+
+  SetLength(vTask, Length(vTask) + 1);
+  vTask[High(vTask)].TypeOfTask := NIR;
+  cTask[NIR].TypeOfTask := NIR;
+  cTask[NIR].strTypeOfTask := 'НИР';
 end;
 
 procedure TCommon.DataModuleCreate(Sender: TObject);

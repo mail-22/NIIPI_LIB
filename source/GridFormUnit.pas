@@ -27,7 +27,7 @@ uses
   dxSkinsdxStatusBarPainter, dxStatusBar, JvAppEvent, ComCtrls,
   JvExComCtrls, JvStatusBar, cxPropertiesStore, CommonUnit
   ,
-  StrUtils
+  StrUtils, cxTextEdit
   ;
 
 type
@@ -134,7 +134,8 @@ type
     cxgrdbtblvw1L_Kluchevye_poly: TcxGridDBColumn;
     pnlFind: TPanel;
     edtFind: TEdit;
-    btnFind: TButton;    procedure actOleExecute(Sender: TObject);
+    btnFind: TButton;
+    mmo1: TMemo;    procedure actOleExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
     procedure actDepExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
@@ -143,10 +144,12 @@ type
     procedure actSpisokExecute(Sender: TObject);
     procedure actTunExecute(Sender: TObject);
     procedure btnFindClick(Sender: TObject);
+    procedure edtFindChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure jvpvnts1Hint(Sender: TObject);
   private
+    procedure Find();
     { Private declarations }
   public
     procedure AddMethod;
@@ -309,7 +312,7 @@ begin
   end;
 end;
 
-procedure TGridForm.btnFindClick(Sender: TObject);
+procedure TGridForm.Find();
 var
  FindText :string ;
  AFromBeginning: boolean;
@@ -322,7 +325,25 @@ begin
   AFromBeginning:= True;
   AView  := cxgrd1DBBandedTableView1;
 
-  SearchIncxGrid(AView, AText, AFromBeginning);
+if Length(FindText) > 0 then
+begin
+    dm.tblReport2.Filtered:=false;
+    dm.tblReport2.Filter := 'L_Kluchevye_poly' + ' LIKE ' + #39 + '%' + FindText + '%' + #39;
+    dm.tblReport2.Filtered:=true;
+end
+  else dm.tblReport2.Filtered:=false;
+
+  //SearchIncxGrid(AView, AText, AFromBeginning);
+end;
+
+procedure TGridForm.btnFindClick(Sender: TObject);
+var
+ FindText :string ;
+ AFromBeginning: boolean;
+ AText :string ;
+ AView: TcxGridTableView;
+begin
+ Find;      Exit;
 end;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -374,6 +395,12 @@ begin
     //dm.UniTransaction1.Commit;   // ?
     Screen.Cursor := crDefault;
   end;
+end;
+
+procedure TGridForm.edtFindChange(Sender: TObject);
+begin
+  inherited;
+  Find;
 end;
 
 procedure TGridForm.FormCreate(Sender: TObject);
