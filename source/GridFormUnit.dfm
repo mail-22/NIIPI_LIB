@@ -533,7 +533,7 @@ inherited GridForm: TGridForm
             object cxgrd1DBBandedTableView1L_shifr_temy: TcxGridDBBandedColumn
               DataBinding.FieldName = 'L_shifr_temy'
               Position.BandIndex = 0
-              Position.ColIndex = 1
+              Position.ColIndex = 3
               Position.RowIndex = 0
             end
             object cxgrd1DBBandedTableView1L_UDK: TcxGridDBBandedColumn
@@ -545,7 +545,7 @@ inherited GridForm: TGridForm
             object cxgrd1DBBandedTableView1L_Year: TcxGridDBBandedColumn
               DataBinding.FieldName = 'L_Year'
               Position.BandIndex = 0
-              Position.ColIndex = 3
+              Position.ColIndex = 1
               Position.RowIndex = 0
             end
             object cxgrd1DBBandedTableView1L_Nazvanie: TcxGridDBBandedColumn
@@ -557,20 +557,20 @@ inherited GridForm: TGridForm
             object cxgrd1DBBandedTableView1L_Razmer: TcxGridDBBandedColumn
               DataBinding.FieldName = 'L_Razmer'
               Position.BandIndex = 0
-              Position.ColIndex = 5
+              Position.ColIndex = 7
               Position.RowIndex = 0
             end
             object cxgrd1DBBandedTableView1L_Spisok_Avtorov: TcxGridDBBandedColumn
               DataBinding.FieldName = 'L_Spisok_Avtorov'
               Position.BandIndex = 0
-              Position.ColIndex = 6
+              Position.ColIndex = 5
               Position.RowIndex = 0
             end
             object cxgrd1DBBandedTableView1L_Kluchevye_poly: TcxGridDBBandedColumn
               DataBinding.FieldName = 'L_Kluchevye_poly'
               PropertiesClassName = 'TcxTextEditProperties'
               Position.BandIndex = 0
-              Position.ColIndex = 7
+              Position.ColIndex = 6
               Position.RowIndex = 0
             end
           end

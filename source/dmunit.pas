@@ -267,8 +267,10 @@ begin
   strConnection   := '\\192.168.80.10\r\bin\r1.mdb';
   strConnection   := 'C:\github\report\report\bin\r1.mdb';
 
-  strConnection   := 'C:\github\NIIPI_LIB\BiN\r.mdb'; 
+  strConnection   := 'C:\github\NIIPI_LIB\BiN\r.mdb';
 
+  strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
+  strConnection  := ExtractFilePath(Application.ExeName) + 'r.mdb';
   UniConnection1.Database := strConnection;
   tmpB := UniConnection1.Connected;
   UniConnection1.Connect;

@@ -1693,9 +1693,10 @@ inherited FormMain: TFormMain
     Left = 0
     Top = 384
     Width = 792
-    Height = 49
+    Height = 57
     Align = alTop
     Alignment = taCenter
+    AutoSize = False
     Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1095#1085#1099#1081' '#1091#1095#1077#1090' '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
