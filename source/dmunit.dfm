@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 510
-  Top = 292
+  Left = 220
+  Top = 303
   Height = 458
   Width = 760
   object OpenDialog1: TOpenDialog
