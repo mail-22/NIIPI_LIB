@@ -135,7 +135,9 @@ type
     pnlFind: TPanel;
     edtFind: TEdit;
     btnFind: TButton;
-    mmo1: TMemo;    procedure actOleExecute(Sender: TObject);
+    mmo1: TMemo;
+    cxgrdbndclmncxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn;    procedure actOleExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
     procedure actDepExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);

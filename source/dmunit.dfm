@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 220
-  Top = 303
+  Left = 510
+  Top = 292
   Height = 458
   Width = 760
   object OpenDialog1: TOpenDialog
@@ -253,14 +253,14 @@ object DM: TDM
         ', basis, basis_N, basis_ffile, b_Avtor, b_Data, b_Year, b_Month,' +
         ' b_Abstract, `b_Volum'#1077'`, b_Tags, b_Zaglavie, L_Nomer_Ucheta, L_s' +
         'hifr_temy, L_UDK, L_Year, L_Nazvanie, L_Razmer, L_Spisok_Avtorov' +
-        ', L_Kluchevye_poly)'
+        ', L_Kluchevye_poly, mesto, otvetstven)'
       'VALUES'
       
         '  (:type_task_i, :type_task_str, :department, :responsible, :dea' +
         'dline, :basis, :basis_N, :basis_ffile, :b_Avtor, :b_Data, :b_Yea' +
         'r, :b_Month, :b_Abstract, :`b_Volum'#1077'`, :b_Tags, :b_Zaglavie, :L_' +
         'Nomer_Ucheta, :L_shifr_temy, :L_UDK, :L_Year, :L_Nazvanie, :L_Ra' +
-        'zmer, :L_Spisok_Avtorov, :L_Kluchevye_poly)')
+        'zmer, :L_Spisok_Avtorov, :L_Kluchevye_poly, :mesto, :otvetstven)')
     SQLDelete.Strings = (
       'DELETE FROM r1'
       'WHERE'
@@ -278,7 +278,7 @@ object DM: TDM
         'heta = :L_Nomer_Ucheta, L_shifr_temy = :L_shifr_temy, L_UDK = :L' +
         '_UDK, L_Year = :L_Year, L_Nazvanie = :L_Nazvanie, L_Razmer = :L_' +
         'Razmer, L_Spisok_Avtorov = :L_Spisok_Avtorov, L_Kluchevye_poly =' +
-        ' :L_Kluchevye_poly'
+        ' :L_Kluchevye_poly, mesto = :mesto, otvetstven = :otvetstven'
       'WHERE'
       '  id = :Old_id')
     SQLLock.Strings = (
@@ -293,7 +293,7 @@ object DM: TDM
         'line, basis, basis_N, basis_ffile, b_Avtor, b_Data, b_Year, b_Mo' +
         'nth, b_Abstract, `b_Volum'#1077'`, b_Tags, b_Zaglavie, L_Nomer_Ucheta,' +
         ' L_shifr_temy, L_UDK, L_Year, L_Nazvanie, L_Razmer, L_Spisok_Avt' +
-        'orov, L_Kluchevye_poly FROM r1'
+        'orov, L_Kluchevye_poly, mesto, otvetstven FROM r1'
       'WHERE'
       '  id = :id')
     Connection = UniConnection1
@@ -437,6 +437,14 @@ object DM: TDM
     object tblReport2L_Kluchevye_poly: TStringField
       DisplayLabel = #1050#1083#1102#1095#1077#1074#1099#1077' '#1087#1086#1083#1103
       FieldName = 'L_Kluchevye_poly'
+      Size = 255
+    end
+    object strngfldReport2mesto: TStringField
+      FieldName = 'mesto'
+      Size = 255
+    end
+    object strngfldReport2otvetstven: TStringField
+      FieldName = 'otvetstven'
       Size = 255
     end
   end

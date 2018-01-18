@@ -3,6 +3,7 @@ program NIIPI_LIB;
 {$WARN UNIT_PLATFORM OFF}
 
 uses
+  ExceptionLog,
   Forms,
   DMUnit in 'dmunit.pas' {DM: TDataModule},
   CommonUnit in 'CommonUnit.pas' {Common: TDataModule},

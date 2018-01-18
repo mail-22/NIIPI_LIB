@@ -76,6 +76,8 @@ type
     tblReport2L_Razmer: TStringField;
     tblReport2L_Spisok_Avtorov: TStringField;
     tblReport2L_Kluchevye_poly: TStringField;
+    strngfldReport2mesto: TStringField;
+    strngfldReport2otvetstven: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dsDepartDataChange(Sender: TObject; Field: TField);
     procedure qryDescription0AfterPost(DataSet: TDataSet);

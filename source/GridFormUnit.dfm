@@ -95,9 +95,10 @@ inherited GridForm: TGridForm
           OptionsView.CellEndEllipsis = True
           OptionsView.CategoryExplorerStyle = True
           OptionsView.GridLineColor = clBlue
-          OptionsView.RowHeaderWidth = 24
+          OptionsView.RowHeaderWidth = 52
           OptionsBehavior.AlwaysShowEditor = True
           OptionsBehavior.RowSizing = True
+          Navigator.Buttons.CustomButtons = <>
           ParentFont = False
           TabOrder = 0
           Visible = False
@@ -351,7 +352,7 @@ inherited GridForm: TGridForm
           RootLevelOptions.DetailTabsPosition = dtpTop
           object cxgrdbtblvw1: TcxGridDBTableView
             DragMode = dmAutomatic
-            NavigatorButtons.ConfirmDelete = False
+            Navigator.Buttons.CustomButtons = <>
             DataController.DataModeController.DetailInSQLMode = True
             DataController.DataModeController.GridMode = True
             DataController.DataModeController.SmartRefresh = True
@@ -484,7 +485,7 @@ inherited GridForm: TGridForm
             end
           end
           object cxgrd1DBBandedTableView1: TcxGridDBBandedTableView
-            NavigatorButtons.ConfirmDelete = False
+            Navigator.Buttons.CustomButtons = <>
             FilterBox.Visible = fvAlways
             DataController.DataSource = DM.dsReport
             DataController.Filter.PercentWildcard = '*'
@@ -573,6 +574,20 @@ inherited GridForm: TGridForm
               Position.ColIndex = 6
               Position.RowIndex = 0
             end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn
+              Caption = #1052#1077#1089#1090#1086' '#1093#1088#1072#1085#1077#1085#1080#1103
+              DataBinding.FieldName = 'mesto'
+              Position.BandIndex = 0
+              Position.ColIndex = 8
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn
+              Caption = #1054#1090#1074#1077#1090#1089#1090#1074#1077#1085#1085#1099#1081' '#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1100
+              DataBinding.FieldName = 'otvetstven'
+              Position.BandIndex = 0
+              Position.ColIndex = 9
+              Position.RowIndex = 0
+            end
           end
           object cxgrdlvl1: TcxGridLevel
             Caption = '2'
@@ -596,8 +611,9 @@ inherited GridForm: TGridForm
           object cxDBNavigator3: TcxDBNavigator
             Left = 259
             Top = 2
-            Width = 1020
+            Width = 1007
             Height = 23
+            Buttons.CustomButtons = <>
             DataSource = DM.dsReport
             Align = alClient
             TabOrder = 0
