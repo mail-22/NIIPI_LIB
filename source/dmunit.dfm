@@ -21,7 +21,7 @@ object DM: TDM
   end
   object UniConnection1: TUniConnection
     ProviderName = 'Access'
-    Database = 'C:\github\NIIPI_LIB\BiN\r.mdb'
+    Database = 'C:\github\NIIPI_LIB\BiN\r1.mdb'
     DefaultTransaction = UniTransaction1
     Username = 'admin'
     Password = '1'

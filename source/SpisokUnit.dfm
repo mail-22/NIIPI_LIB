@@ -302,7 +302,8 @@ inherited SpisokForm: TSpisokForm
         ParentFont = False
         TabOrder = 0
         object cxGrid2DBTableView1: TcxGridDBTableView
-          NavigatorButtons.ConfirmDelete = False
+          Navigator.Buttons.CustomButtons = <>
+          Navigator.Visible = True
           FilterBox.Visible = fvAlways
           DataController.DataModeController.GridMode = True
           DataController.DataModeController.SmartRefresh = True
@@ -324,7 +325,6 @@ inherited SpisokForm: TSpisokForm
           OptionsBehavior.IncSearch = True
           OptionsBehavior.NavigatorHints = True
           OptionsView.CellEndEllipsis = True
-          OptionsView.Navigator = True
           OptionsView.ColumnAutoWidth = True
           OptionsView.Footer = True
           OptionsView.FooterAutoHeight = True
@@ -433,8 +433,9 @@ inherited SpisokForm: TSpisokForm
       object cxdbnvgtr1: TcxDBNavigator
         Left = 261
         Top = 2
-        Width = 885
+        Width = 872
         Height = 23
+        Buttons.CustomButtons = <>
         DataSource = dsReportFiltr
         Align = alLeft
         TabOrder = 0
@@ -523,7 +524,6 @@ inherited SpisokForm: TSpisokForm
     Top = 476
   end
   object cxLocalizer1: TcxLocalizer
-    FileName = 'D:\Dropbox\Share5\Work\Monitoring_2017\DevExRus100Proc.ini'
     Left = 436
     Top = 495
   end

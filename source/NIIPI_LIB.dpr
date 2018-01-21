@@ -40,23 +40,8 @@ uses
 begin
   Application.Initialize;
 
-  Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TCommon, Common);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TGridForm, GridForm);
-  Application.CreateForm(TBaseForm, BaseForm);
-  Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TBaseForm2, BaseForm2);
-  Application.CreateForm(TEditForm, EditForm);
-  Application.CreateForm(TEditForm2, EditForm2);
-  Application.CreateForm(TSelDepForm, SelDepForm);
-  Application.CreateForm(TLogicForm, LogicForm);
-  Application.CreateForm(TEditGridJpgForm, EditGridJpgForm);
-  Application.CreateForm(TEditGridJOleForm, EditGridJOleForm);
-  Application.CreateForm(TEditEmplForm, EditEmplForm);
-  Application.CreateForm(TSpisokForm, SpisokForm);
-  Application.CreateForm(TExportXLSForm, ExportXLSForm);
-  Application.CreateForm(TMailForm, MailForm);
-  Application.CreateForm(TMailEditForm, MailEditForm);
+  Application.CreateForm(TFormMain, FormMain);
   Application.Run;
 end.

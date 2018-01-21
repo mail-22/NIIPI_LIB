@@ -217,7 +217,7 @@ if FileExists(sMyDocAppPath + 'DevExRus100Proc.ini') then
 
   Init;
 end;
-
+ 
 procedure TDM.SetConnection;
 var
   strTmp: string; //ovTmp: OleVariant;
@@ -236,47 +236,47 @@ var
   IniFileName: string; //CommonUnit
   tmpB: Boolean;
 begin
-
   IniFileName := ChangeFileExt(Forms.Application.ExeName, '.ini');
   IniFile := TIniFile.Create(IniFileName);
 
-  
+
   UniConnection1.Disconnect;
   strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
 
+/// <author>.</author>
+  strTmp:=IniFile.ReadString('ConnectionString', 'ConnectionString', strTmp);
+  strConnection_Set(IniFile.ReadString('ConnectionString', 'ConnectionString', strTmp) );
+  if ( FileExists(strTmp)) then  begin
+     strConnection_Set(strTmp);
+  end
+  else begin
+     strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
+     if ( FileExists(strTmp)) then  begin
+        strConnection_Set(strTmp);
+     end
+     else begin
+            Application.MessageBox('Не определена строка ConnectionString: ', PAnsiChar(strConnection_Get), MB_OK +
+              MB_ICONWARNING + MB_TOPMOST);
+              {
+            //MessageDlg('Не определена строка ConnectionString', mtWarning, [mbOK], 0);
+            //jvdyncontrolengine defaultdyncontrolengine not defined
+            // https://forums.embarcadero.com/thread.jspa?threadID=227492
+            }                                 
+          end
+  end;
+  Data_Source :=  ExtractFilePath(strTmp);
+
 {
-  if ( FileExists(strTmp)) then
-  begin
-    strConnection_Set(strTmp);
-  end else
-  begin
-     strConnection_Set(IniFile.ReadString('ConnectionString', 'ConnectionString', strTmp) );
-  end;  ;
-}
-
-// приоритет НЕ локальной БД !!!     // \\Fds7\r\bin\r1.mdb  // R:\bin\r1.mdb   // \\SRV-NIIPIIT\r\bin\r1.mdb  ///\\192.168.80.10\r\bin\r1.mdb
-  strTmp := IniFile.ReadString('ConnectionString', 'ConnectionString', strTmp);
-  if ( FileExists(strTmp)) then
-  begin
-    strConnection_Set(strTmp);
-  end else
-  begin
-     //strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
-     //strConnection_Set(strTmp) );
-  end;  ;
-
   strConnection   := '\\SRV-NIIPIIT\r\bin\r1.mdb';
   strConnection   := '\\192.168.80.10\r\bin\r1.mdb';
   strConnection   := 'C:\github\report\report\bin\r1.mdb';
+}
 
-  strConnection   := 'C:\github\NIIPI_LIB\BiN\r.mdb';
-
-  strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
-  strConnection  := ExtractFilePath(Application.ExeName) + 'r.mdb';
-  UniConnection1.Database := strConnection;
+  UniConnection1.Database := strConnection_Get;
   tmpB := UniConnection1.Connected;
   UniConnection1.Connect;
 
+exit;
   TestADO();
   //GetDBPath;
   Data_Source := DBFileName;
