@@ -167,7 +167,7 @@ implementation
 
 
 uses
-  CommonUnit;
+  CommonUnit, WebUpdateUnit;
 
 {$R *.dfm}
 
@@ -182,6 +182,7 @@ end;
 procedure TDM.DataModuleCreate(Sender: TObject);
 var sMyDocAppPath: string;
 begin
+  WebUpdateForm_Show;
  // ADConnection1.Params.Text:='DSN=dbtemp'+#13#10+'User_Name=Admin' + 'Database=C:\Nir2015_FireDAC\Monitoring\db1.mdb';
  // ADConnection1.DriverName:='MSACC';
 {

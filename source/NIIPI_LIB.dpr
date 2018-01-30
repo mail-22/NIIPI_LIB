@@ -33,7 +33,8 @@ uses
   DisplayLabel in 'DisplayLabel.pas',
   MailFormUnit in 'MailFormUnit.pas' {MailForm},
   MailEditFormUnit in 'MailEditFormUnit.pas' {MailEditForm},
-  SystemDirs in 'SystemDirs.pas';
+  SystemDirs in 'SystemDirs.pas',
+  WebUpdateUnit in 'WebUpdateUnit.pas' {WebUpdateForm};
 
 {$R *.res}
 
@@ -43,5 +44,6 @@ begin
   Application.CreateForm(TCommon, Common);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFormMain, FormMain);
+  Application.CreateForm(TWebUpdateForm, WebUpdateForm);
   Application.Run;
 end.
