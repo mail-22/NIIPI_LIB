@@ -248,7 +248,7 @@ var
 begin
   IniFileName := ChangeFileExt(Forms.Application.ExeName, '.ini');
   IniFile := TIniFile.Create(IniFileName);
-              
+               
   UniConnection1.Disconnect;
 
   PathToBD := ExtractFilePath(Application.ExeName) + 'r.mdb';
