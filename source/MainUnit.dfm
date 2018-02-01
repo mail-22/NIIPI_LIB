@@ -1714,7 +1714,6 @@ inherited FormMain: TFormMain
     TextMargins.X = 0
     TextMargins.Y = 0
     WordWrap = True
-    OnClick = jvstctxt3Click
   end
   object jvstctxt4: TJvStaticText [5]
     Left = 0
@@ -2147,6 +2146,7 @@ inherited FormMain: TFormMain
     end
     object actTuning2: TAction
       Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+      OnExecute = actTuning2Execute
     end
     object actListOfBilding: TAction
       Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072

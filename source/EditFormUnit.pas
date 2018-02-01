@@ -10,7 +10,7 @@ uses
   cxInplaceContainer, cxPropertiesStore, StdCtrls, ExtCtrls,
   cxDBLookupComboBox, cxMRUEdit, cxCalendar, dxSkinsCore,
   dxSkinOffice2007Blue, XPStyleActnCtrls, ActnList, ActnMan, ToolWin,
-  ActnCtrls, GridFormUnit, cxCheckBox;
+  ActnCtrls, GridFormUnit, cxCheckBox, cxClasses;
 
 type
   TEditForm = class(TBaseForm)
@@ -26,7 +26,6 @@ type
     acttb2: TActionToolBar;
     cxdbvrtclgrd1department: TcxDBEditorRow;
     cxdbvrtclgrd1DepartL: TcxDBEditorRow;
-    cxdbvrtclgrd1responsible: TcxDBEditorRow;
     cxdbvrtclgrd1deadline: TcxDBEditorRow;
     cxdbvrtclgrd1type_task_i: TcxDBEditorRow;
     cxdbvrtclgrd1type_task_str: TcxDBEditorRow;
@@ -49,6 +48,8 @@ type
     cxdbvrtclgrd1L_Razmer: TcxDBEditorRow;
     cxdbvrtclgrd1L_Spisok_Avtorov: TcxDBEditorRow;
     cxdbvrtclgrd1L_Kluchevye_poly: TcxDBEditorRow;
+    cxdbdtrwcxdbvrtclgrd1DBEditorRow1: TcxDBEditorRow;
+    cxdbdtrwcxdbvrtclgrd1DBEditorRow2: TcxDBEditorRow;
     procedure btnCancelClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
   private

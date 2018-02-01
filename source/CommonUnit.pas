@@ -4,7 +4,8 @@ unit CommonUnit;
 interface
 
 uses
-  SysUtils, Classes, IniFiles, Forms
+  SysUtils, Classes, IniFiles, Forms ,
+  JvDSADialogs
   //,PropStorageEh           SysUtils
   ;
 
@@ -49,12 +50,19 @@ function Float2Str(Value: Extended): string; overload;
 function Str2Float(const S: string): Extended; overload;
 function TempDir: string;
 
+procedure ShowMessage2(const Msg: string);
+procedure ShowMessage3(const aText, aCaption: string);
+
+Function GetApplicationDataFolder :string;
+Function ChangeFileExt2(Patch: string):string;
+Function GetProfileFolder(): String;
+
 var
   xls_template_FileName  : string;
 
   Common: TCommon;
 
-  strTX :string;
+strTX :string;
 strTY :string;
 strTZ :string;
 
@@ -66,6 +74,9 @@ ChartBMPFileName: string;
   IniFileName: string;
   IniFile: TIniFile; //GetWindowsDir
 
+IniLocalFileName: string;
+IniLocalFile: TIniFile;
+
   LngINISupp_FileName: string;
 
   TempDirName: string;
@@ -76,10 +87,15 @@ ChartBMPFileName: string;
 
   Vers: string;
 
+  cur_type_task_str :string;
+  cur_type_task_i :integer;
+
+  MRU_FiO :string;
 implementation
 
 uses Dialogs
   , Windows
+  , Registry
       //, JvFileUtil
       //,JvJVCLUtils
   , JvJCLUtils
@@ -87,6 +103,44 @@ uses Dialogs
   ;
 
 {$R *.dfm}
+
+
+Function ChangeFileExt2(Patch: string): String;
+var inistr:string ;
+begin
+inistr := IncludeTrailingBackslash(GetApplicationDataFolder) + SysUtils.ChangeFileExt(Application.ExeName,'')  +'_Profile\';
+inistr := IncludeTrailingBackslash(GetApplicationDataFolder) + ExtractFileName(Application.ExeName)  +'_Profile\';
+
+If NOT DirectoryExists(inistr) Then ForceDirectories(inistr);
+  inistr := inistr +Patch+ ChangeFileExt(ExtractFileName(Application.ExeName), '.ini');
+  result := inistr;
+end;
+
+Function GetProfileFolder(): String;
+var inistr:string ;
+begin
+inistr := IncludeTrailingBackslash(GetApplicationDataFolder) + SysUtils.ChangeFileExt(Application.ExeName,'')  +'_Profile\';
+inistr := IncludeTrailingBackslash(GetApplicationDataFolder) + ExtractFileName(Application.ExeName)  +'_Profile\';
+
+If NOT DirectoryExists(inistr) Then ForceDirectories(inistr);
+  result := inistr;
+end;
+
+// Возвращает путь "Document and Settings" для текущего пользователя
+Function GetApplicationDataFolder: String;
+Var
+  RegIniFile : Registry.TRegIniFile;  strTmp:string ;
+Begin
+  Result := '';
+  Try
+    RegIniFile := Registry.TRegIniFile.Create;
+    strTmp:=  RegIniFile.ReadString('Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',
+                                    'Local AppData', '');
+    Result := strTmp;
+  finally
+    FreeAndNil(RegIniFile);
+  end;
+End;
 
 function TempDir: string;
 {функция возвращает путь к папке временных файлов}
@@ -107,7 +161,7 @@ begin
   i := Length(vTask);
 
   SetLength(vTask, Length(vTask) + 1);
-  vTask[High(vTask)].TypeOfTask := Mail;  
+  vTask[High(vTask)].TypeOfTask := Mail;
   cTask[Mail].TypeOfTask := Mail;
   cTask[Mail].strTypeOfTask := 'письмо';
 
@@ -117,9 +171,11 @@ begin
   cTask[Dogovor].strTypeOfTask := 'договор';
 
   SetLength(vTask, Length(vTask) + 1);
-  vTask[High(vTask)].TypeOfTask := NIR;
-  cTask[NIR].TypeOfTask := NIR;
-  cTask[NIR].strTypeOfTask := 'НИР';
+  vTask[High(vTask)].TypeOfTask := Nir;
+  cTask[Nir].TypeOfTask := Nir;
+  cTask[Nir].strTypeOfTask := 'НИР';
+
+  MRU_FiO := ExtractFilePath(Application.ExeName)+ 'MRU.FiO.txt';
 end;
 
 procedure TCommon.DataModuleCreate(Sender: TObject);
@@ -128,6 +184,9 @@ var
   i: integer;
 begin
   Init;
+
+  IniLocalFileName :=  GetProfileFolder + ChangeFileExt(ExtractFileName(Application.ExeName), '.ini');
+  IniLocalFile := TIniFile.Create(IniLocalFileName);
 
   IniFileName := ChangeFileExt(Application.ExeName, '.ini');
   //IniFileName := JvJCLUtils.GetWindowsDir +'\'+ ChangeFileExt(ExtractFileName(Application.ExeName), '.ini');
@@ -310,6 +369,23 @@ begin
 
   Result := dTmt;
 end; //Str2Float
+
+procedure ShowMessage2(const Msg: string);
+begin
+  // TODO -cMM: ShowMessage2 default body inserted
+  Application.MessageBox(PAnsiChar( Msg ), ' ', MB_OK + MB_ICONWARNING + MB_TOPMOST);
+end;
+
+procedure ShowMessage3(const aText, aCaption: string);
+begin
+  Application.MessageBox( PAnsiChar(aText),
+                          PAnsiChar(aCaption),
+                          MB_OK + MB_ICONWARNING+ MB_TOPMOST);
+end;
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 
 

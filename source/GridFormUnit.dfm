@@ -1,6 +1,6 @@
 inherited GridForm: TGridForm
-  Left = 146
-  Top = 245
+  Left = -309
+  Top = 372
   Width = 1359
   Height = 783
   Caption = ''
@@ -517,6 +517,9 @@ inherited GridForm: TGridForm
               item
                 Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077' , '#1086#1090#1076#1077#1083
                 Width = 88
+              end
+              item
+                Caption = 'Editor'
               end>
             object cxgrdbndclmncxgrd1DBBandedTableView1id: TcxGridDBBandedColumn
               DataBinding.FieldName = 'id'
@@ -575,26 +578,52 @@ inherited GridForm: TGridForm
               Position.RowIndex = 0
             end
             object cxgrdbndclmncxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn
-              Caption = #1052#1077#1089#1090#1086' '#1093#1088#1072#1085#1077#1085#1080#1103
               DataBinding.FieldName = 'mesto'
               Position.BandIndex = 0
               Position.ColIndex = 8
               Position.RowIndex = 0
             end
             object cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn
-              Caption = #1054#1090#1074#1077#1090#1089#1090#1074#1077#1085#1085#1099#1081' '#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1100
               DataBinding.FieldName = 'otvetstven'
               Position.BandIndex = 0
               Position.ColIndex = 9
               Position.RowIndex = 0
             end
+            object cxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_ComputerName'
+              Width = 33
+              Position.BandIndex = 3
+              Position.ColIndex = 0
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Column3: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_Date'
+              Width = 33
+              Position.BandIndex = 3
+              Position.ColIndex = 1
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Column4: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_IP'
+              Width = 33
+              Position.BandIndex = 3
+              Position.ColIndex = 2
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Column5: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_LocalUserName'
+              Width = 33
+              Position.BandIndex = 3
+              Position.ColIndex = 3
+              Position.RowIndex = 0
+            end
           end
           object cxgrdlvl1: TcxGridLevel
-            Caption = '2'
+            Caption = #1090#1072#1073#1083#1080#1094#1072' '
             GridView = cxgrd1DBBandedTableView1
           end
           object cxgrdlvlcxgrd1Level1: TcxGridLevel
-            Caption = '1'
+            Caption = '...'
             GridView = cxgrdbtblvw1
           end
         end
@@ -609,9 +638,9 @@ inherited GridForm: TGridForm
           BorderStyle = bsSingle
           TabOrder = 1
           object cxDBNavigator3: TcxDBNavigator
-            Left = 259
+            Left = 206
             Top = 2
-            Width = 1007
+            Width = 1067
             Height = 23
             Buttons.CustomButtons = <>
             DataSource = DM.dsReport
@@ -621,7 +650,7 @@ inherited GridForm: TGridForm
           object pnl3: TPanel
             Left = 187
             Top = 2
-            Width = 72
+            Width = 19
             Height = 23
             Align = alLeft
             AutoSize = True
@@ -630,7 +659,7 @@ inherited GridForm: TGridForm
             object jvdbstslbl1: TJvDBStatusLabel
               Left = 0
               Top = 3
-              Width = 72
+              Width = 19
               Height = 17
               DataSource = DM.dsReport
               Style = lsRecordNo
@@ -708,7 +737,7 @@ inherited GridForm: TGridForm
     Font.Style = []
   end
   object pnlFind: TPanel [4]
-    Left = 720
+    Left = 555
     Top = 0
     Width = 473
     Height = 26

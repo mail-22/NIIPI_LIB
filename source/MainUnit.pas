@@ -46,6 +46,7 @@ type
     procedure actListOfBildingExecute(Sender: TObject);
     procedure actMailExecute(Sender: TObject);
     procedure actNirExecute(Sender: TObject);
+    procedure actTuning2Execute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -54,7 +55,6 @@ type
     procedure hlpnhlp1Execute(Sender: TObject);
     procedure hlptpcsrch1Execute(Sender: TObject);
     procedure jvplctnhtky1HotKey(Sender: TObject);
-    procedure jvstctxt3Click(Sender: TObject);
   private
     procedure cxPropertiesStoreMethod(Sender: TObject);
 
@@ -64,6 +64,7 @@ type
   end;
 
 procedure Help2;
+function GetVersion: string;
 
 var
   FormMain: TFormMain;
@@ -113,6 +114,7 @@ end;
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   inherited;
+  Self.Caption := Self.Caption +' Библиотечный учет.     ver.'+ GetVersion;
     //Application.CreateForm(TForm3, Form3);
     //Form2.ShowModale;
     //Form3.ShowModale;
@@ -156,20 +158,6 @@ end;
 
 
 ///////////////////////////////////////////////////////////////////////////////
-
-
-procedure TFormMain.FormTuning_Show;
-begin
-  if (FormTuning = nil) then begin
-    Application.CreateForm(TFormTuning, FormTuning);
-    //FormTuning := TFormTuning.Create(FormMain);
-    //FormTuning.Parent := FormMain;
-    //FormTuning := TFormTuning.Create(Application);
-  end;
-  FormTuning.ShowModal;
-  //FormTuning.Show;
-  //FormTuning.WindowState := wsMaximized;
-end;
 
 procedure TFormMain.AddBildForm_Show;
 begin
@@ -239,6 +227,12 @@ begin
   ;
 end;
 
+procedure TFormMain.actTuning2Execute(Sender: TObject);
+begin
+  inherited;
+  FormTuning_Show;
+end;
+
 procedure TFormMain.cxPropertiesStoreMethod(Sender: TObject);
 begin
   cxprprtstr2.active := false;
@@ -258,11 +252,39 @@ begin
 end;
 
 
-procedure TFormMain.jvstctxt3Click(Sender: TObject);
+function GetVersion: string;
+var VerInfoSize: DWORD;
+    VerInfo: Pointer;
+    VerValueSize: DWORD;
+    VerValue: PVSFixedFileInfo;
+    Dummy: DWORD;
 begin
-  inherited;
+  VerInfoSize := GetFileVersionInfoSize(PChar(ParamStr(0)), Dummy);
+  GetMem(VerInfo, VerInfoSize);
+  GetFileVersionInfo(PChar(ParamStr(0)), 0, VerInfoSize, VerInfo);
+  VerQueryValue(VerInfo, '\', Pointer(VerValue), VerValueSize);
+  with VerValue^ do
+  begin
+    Result := IntToStr(dwFileVersionMS shr 16);
+    Result := Result + '.' + IntToStr(dwFileVersionMS and $FFFF);
+    Result := Result + '.' + IntToStr(dwFileVersionLS shr 16);
+    Result := Result + '.' + IntToStr(dwFileVersionLS and $FFFF);
+  end;
+  FreeMem(VerInfo, VerInfoSize);
 end;
-
 ///////////////////////////////////////////////////////////////////////////////
+
+procedure TFormMain.FormTuning_Show;
+begin
+  if (FormTuning = nil) then begin
+    Application.CreateForm(TFormTuning, FormTuning);
+    //FormTuning := TFormTuning.Create(FormMain);
+    //FormTuning.Parent := FormMain;
+    //FormTuning := TFormTuning.Create(Application);
+  end;
+  FormTuning.ShowModal;
+  //FormTuning.Show;
+  //FormTuning.WindowState := wsMaximized;
+end;
 
 end.

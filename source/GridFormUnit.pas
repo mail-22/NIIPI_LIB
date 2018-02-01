@@ -137,7 +137,11 @@ type
     btnFind: TButton;
     mmo1: TMemo;
     cxgrdbndclmncxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn;
-    cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn;    procedure actOleExecute(Sender: TObject);
+    cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn;
+    cxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Column3: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Column4: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Column5: TcxGridDBBandedColumn;    procedure actOleExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
     procedure actDepExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
@@ -182,6 +186,7 @@ var
   FileName_cxgrdbtblvw1 :string;
   FileName_cxdbvrtclgrd1 :string;
   FileName_cxgrd1DBBandedTableView1 :string;
+  FileName_cxprprtstr1 :string;
 
 
 procedure TGridForm.actOleExecute(Sender: TObject);
@@ -406,31 +411,29 @@ begin
 end;
 
 procedure TGridForm.FormCreate(Sender: TObject);
+var tmpStr :string;
 begin
   inherited;
-    // ???
-{
-  DM.tblReport2.FindLast;
-  DM.tblReport2.FindFirst;
-  DM.tblReport2.FindLast;
-}
-
 // cxgrd1
-  FileName_cxgrdbtblvw1:= ExtractFilePath(Application.ExeName) +'_'+ Self.Name +'_'+ 'cxgrdbtblvw1' +'.ini';
+  tmpStr :=  '_' + Self.Name+ '_' + 'cxgrdbtblvw1'+ '_';
+  FileName_cxgrdbtblvw1 :=  ChangeFileExt2(tmpStr);
   cxgrdbtblvw1.RestoreFromIniFile(FileName_cxgrdbtblvw1);
 
-  FileName_cxdbvrtclgrd1:= ExtractFilePath(Application.ExeName) +'_'+ Self.Name +'_'+ 'cxdbvrtclgrd1' +'.ini';
+  tmpStr :=  '_' + Self.Name+ '_' + 'cxdbvrtclgrd1'+ '_';
+  FileName_cxdbvrtclgrd1 :=  ChangeFileExt2(tmpStr);
   cxdbvrtclgrd1.RestoreFromIniFile(FileName_cxdbvrtclgrd1);
 
 //cxgrd1DBBandedTableView1
-  FileName_cxgrd1DBBandedTableView1 := ExtractFilePath(Application.ExeName) +'_'+ Self.Name +'_'+ 'cxgrd1DBBandedTableView1' +'.ini';
+  tmpStr :=  '_' + Self.Name+ '_' + 'cxgrd1DBBandedTableView1'+ '_';
+  FileName_cxgrd1DBBandedTableView1 :=  ChangeFileExt2(tmpStr);
   cxgrd1DBBandedTableView1.RestoreFromIniFile(FileName_cxgrd1DBBandedTableView1);
 
-
-  cxprprtstr1.Active:=true;
-  cxprprtstr1.StorageName:=ExtractFilePath(Application.ExeName) +'_'+  Self.Name +'_'+ 'cxprprtstr1' +'.ini';
+  //cxprprtstr1.StorageName := ExtractFilePath(Application.ExeName) + '_' +     Self.Name + '_' + 'cxprprtstr1' + '.ini';
+  tmpStr :=  '_' + Self.Name+ '_' + 'cxprprtstr1'+ '_';
+  FileName_cxprprtstr1 :=  ChangeFileExt2(tmpStr);
+  cxprprtstr1.StorageName := FileName_cxprprtstr1 ;
   cxprprtstr1.RestoreFrom;
-
+  cxprprtstr1.Active := true; cxprprtstr1.RestoreFrom;
 end;
 
 procedure TGridForm.FormClose(Sender: TObject; var Action: TCloseAction);

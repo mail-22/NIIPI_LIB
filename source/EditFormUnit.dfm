@@ -1,6 +1,6 @@
 inherited EditForm: TEditForm
-  Left = 338
-  Top = 233
+  Left = 148
+  Top = 164
   Height = 782
   Caption = 'EditForm'
   PixelsPerInch = 96
@@ -48,6 +48,7 @@ inherited EditForm: TEditForm
     OptionsView.GridLineColor = clBlue
     OptionsView.RowHeaderWidth = 383
     OptionsBehavior.RowSizing = True
+    Navigator.Buttons.CustomButtons = <>
     ParentFont = False
     TabOrder = 1
     DataController.DataSource = DM.dsReport
@@ -55,6 +56,7 @@ inherited EditForm: TEditForm
     Version = 1
     object cxdbvrtclgrd1id: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'id'
+      Visible = False
       ID = 0
       ParentID = -1
       Index = 0
@@ -63,7 +65,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1department: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'department'
       Visible = False
-      ID = 8
+      ID = 1
       ParentID = -1
       Index = 1
       Version = 1
@@ -71,185 +73,192 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1DepartL: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'DepartL'
       Visible = False
-      ID = 9
+      ID = 2
       ParentID = -1
       Index = 2
-      Version = 1
-    end
-    object cxdbvrtclgrd1responsible: TcxDBEditorRow
-      Properties.DataBinding.FieldName = 'responsible'
-      Visible = False
-      ID = 10
-      ParentID = -1
-      Index = 3
       Version = 1
     end
     object cxdbvrtclgrd1deadline: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'deadline'
       Visible = False
-      ID = 11
+      ID = 4
       ParentID = -1
-      Index = 4
+      Index = 3
       Version = 1
     end
     object cxdbvrtclgrd1type_task_i: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'type_task_i'
       Visible = False
-      ID = 12
+      ID = 5
       ParentID = -1
-      Index = 5
+      Index = 4
       Version = 1
     end
     object cxdbvrtclgrd1type_task_str: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'type_task_str'
       Visible = False
-      ID = 13
+      ID = 6
       ParentID = -1
-      Index = 6
+      Index = 5
       Version = 1
     end
     object cxdbvrtclgrd1basis: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'basis'
       Visible = False
-      ID = 14
+      ID = 7
       ParentID = -1
-      Index = 7
+      Index = 6
       Version = 1
     end
     object cxdbvrtclgrd1basis_N: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'basis_N'
       Visible = False
-      ID = 15
+      ID = 8
       ParentID = -1
-      Index = 8
+      Index = 7
       Version = 1
     end
     object cxdbvrtclgrd1basis_ffile: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'basis_ffile'
       Visible = False
-      ID = 16
+      ID = 9
       ParentID = -1
-      Index = 9
+      Index = 8
       Version = 1
     end
     object cxdbvrtclgrd1b_Avtor: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Avtor'
       Visible = False
-      ID = 17
+      ID = 10
       ParentID = -1
-      Index = 10
+      Index = 9
       Version = 1
     end
     object cxdbvrtclgrd1b_Data: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Data'
       Visible = False
-      ID = 18
+      ID = 11
       ParentID = -1
-      Index = 11
+      Index = 10
       Version = 1
     end
     object cxdbvrtclgrd1b_Year: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Year'
       Visible = False
-      ID = 19
+      ID = 12
       ParentID = -1
-      Index = 12
+      Index = 11
       Version = 1
     end
     object cxdbvrtclgrd1b_Month: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Month'
       Visible = False
-      ID = 20
+      ID = 13
       ParentID = -1
-      Index = 13
+      Index = 12
       Version = 1
     end
     object cxdbvrtclgrd1b_Abstract: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Abstract'
       Visible = False
-      ID = 21
+      ID = 14
       ParentID = -1
-      Index = 14
+      Index = 13
       Version = 1
     end
     object cxdbvrtclgrd1b_Volum: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Volum'#1077
       Visible = False
-      ID = 22
+      ID = 15
       ParentID = -1
-      Index = 15
+      Index = 14
       Version = 1
     end
     object cxdbvrtclgrd1b_Tags: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Tags'
       Visible = False
-      ID = 23
+      ID = 16
       ParentID = -1
-      Index = 16
+      Index = 15
       Version = 1
     end
     object cxdbvrtclgrd1b_Zaglavie: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Zaglavie'
       Visible = False
-      ID = 24
+      ID = 17
       ParentID = -1
-      Index = 17
+      Index = 16
       Version = 1
     end
     object cxdbvrtclgrd1L_Nomer_Ucheta: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Nomer_Ucheta'
-      ID = 25
+      ID = 18
       ParentID = -1
-      Index = 18
+      Index = 17
       Version = 1
     end
     object cxdbvrtclgrd1L_shifr_temy: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_shifr_temy'
-      ID = 26
+      ID = 19
       ParentID = -1
-      Index = 19
+      Index = 18
       Version = 1
     end
     object cxdbvrtclgrd1L_UDK: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_UDK'
-      ID = 27
+      ID = 20
       ParentID = -1
-      Index = 20
+      Index = 19
       Version = 1
     end
     object cxdbvrtclgrd1L_Year: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Year'
-      ID = 28
+      ID = 21
       ParentID = -1
-      Index = 21
+      Index = 20
       Version = 1
     end
     object cxdbvrtclgrd1L_Nazvanie: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Nazvanie'
-      ID = 29
+      ID = 22
       ParentID = -1
-      Index = 22
+      Index = 21
       Version = 1
     end
     object cxdbvrtclgrd1L_Razmer: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Razmer'
-      ID = 30
+      ID = 23
       ParentID = -1
-      Index = 23
+      Index = 22
       Version = 1
     end
     object cxdbvrtclgrd1L_Spisok_Avtorov: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Spisok_Avtorov'
-      ID = 31
+      ID = 24
       ParentID = -1
-      Index = 24
+      Index = 23
       Version = 1
     end
     object cxdbvrtclgrd1L_Kluchevye_poly: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Kluchevye_poly'
-      ID = 32
+      ID = 25
+      ParentID = -1
+      Index = 24
+      Version = 1
+    end
+    object cxdbdtrwcxdbvrtclgrd1DBEditorRow1: TcxDBEditorRow
+      Properties.DataBinding.FieldName = 'mesto'
+      ID = 26
       ParentID = -1
       Index = 25
+      Version = 1
+    end
+    object cxdbdtrwcxdbvrtclgrd1DBEditorRow2: TcxDBEditorRow
+      Properties.Caption = #1054#1090#1074#1077#1090#1089#1090#1074#1077#1085#1085#1099#1081
+      Properties.DataBinding.FieldName = 'otvetstven'
+      ID = 27
+      ParentID = -1
+      Index = 26
       Version = 1
     end
   end

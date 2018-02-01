@@ -2,14 +2,14 @@ unit DMUnit;
 
 //Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\Work\Metro_Project\Bin\data\db.mdb;Mode=ReadWrite;Extended Properties="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False
 interface
- {}
+{}
 uses Forms, ADOint, IniFiles, DbUtil
   , utility
   , SysUtils, Classes, ADODB, DB, DisplayLabel, Dialogs
   , JvJCLUtils, JvComponentBase, JvBDEFilter, Windows,
   JvDSADialogs, cxClasses, DAAlerter, UniAlerter, DASQLMonitor,
   UniSQLMonitor, DBAccess, Uni, UniProvider, ODBCUniProvider,
-  AccessUniProvider, MemDS;
+  AccessUniProvider, MemDS, IP_Unit ;
 
 type
   TDM = class(TDataModule)
@@ -78,6 +78,10 @@ type
     tblReport2L_Kluchevye_poly: TStringField;
     strngfldReport2mesto: TStringField;
     strngfldReport2otvetstven: TStringField;
+    strngfldReport2Edit_ComputerName: TStringField;
+    strngfldReport2Edit_LocalUserName: TStringField;
+    strngfldReport2Edit_IP: TStringField;
+    dtmfldReport2Edit_Date: TDateTimeField;
     procedure DataModuleCreate(Sender: TObject);
     procedure dsDepartDataChange(Sender: TObject; Field: TField);
     procedure qryDescription0AfterPost(DataSet: TDataSet);
@@ -92,7 +96,11 @@ type
     procedure tblBildingAfterInsert(DataSet: TDataSet);
     procedure tblJpgAfterInsert(DataSet: TDataSet);
     procedure tblJpgAfterPost(DataSet: TDataSet);
-    procedure tblReportFiltr2FilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure tblReport2BeforePost(DataSet: TDataSet);
+    procedure tblReport2UpdateRecord(DataSet: TDataSet; UpdateKind: TUpdateKind;
+        var UpdateAction: TUpdateAction);
+    procedure tblReportFiltr2FilterRecord(DataSet: TDataSet; var Accept:
+      Boolean);
 
   private
     Data_Source: string;
@@ -100,8 +108,7 @@ type
     DL: TDL;
     procedure AfterPost(DataSet: TDataSet);
     procedure BeforePost(DataSet: TDataSet);
-
-
+    procedure tblReport2_SetCompName(DataSet: TDataSet);
 
   protected
     CursorLocation: TCursorLocation;
@@ -115,7 +122,7 @@ type
     BlockReadSize: Integer;
     CacheSize: Integer;
 
-    strConnection:string;  //ConnectionString - путь к БД
+    strConnection: string; //ConnectionString - путь к БД
   public
     //DbFileName: string;
     TOP: Integer;
@@ -133,7 +140,7 @@ type
     function GetDBPath(): boolean;
     procedure start;
 
-    function  strConnection_Get: string;
+    function strConnection_Get: string;
     procedure strConnection_Set(astrConnection: string);
   end;
 
@@ -143,11 +150,10 @@ type
     csINI
     );
 
-  procedure TestADO();
-  procedure WillChangeRecord(DataSet: TDataSet;
-    const Reason: TEventReason; const RecordCount: Integer;
-    var EventStatus: TEventStatus);
-
+procedure TestADO();
+procedure WillChangeRecord(DataSet: TDataSet;
+  const Reason: TEventReason; const RecordCount: Integer;
+  var EventStatus: TEventStatus);
 
 var
   DM: TDM;
@@ -156,18 +162,18 @@ var
 
   User_ID: string = 'Admin'; //'Admin'; //User
   User_Password: string = '21'; //Password
-  word2: string = '74278775'; //= Password для Access; //word1 = Password для программы
+  word2: string = '74278775';
+  //= Password для Access; //word1 = Password для программы
   DbFileName: string = 'db.mdb';
-
 
 const
   id_TypeOfDoc_NONE = 10;
 
 implementation
 
-
 uses
-  CommonUnit, WebUpdateUnit;
+  CommonUnit, WebUpdateUnit
+  , IPHelper, IPHLPAPI, WinSock , JclSysInfo;
 
 {$R *.dfm}
 
@@ -175,53 +181,55 @@ uses
 
 procedure TDM.tblBildingAfterInsert(DataSet: TDataSet);
 begin
-   // tblBilding.FieldByName('id').AsInteger;
+  // tblBilding.FieldByName('id').AsInteger;
 end;
 
-
 procedure TDM.DataModuleCreate(Sender: TObject);
-var sMyDocAppPath: string;
+var
+  sMyDocAppPath: string;
 begin
-  WebUpdateForm_Show;
- // ADConnection1.Params.Text:='DSN=dbtemp'+#13#10+'User_Name=Admin' + 'Database=C:\Nir2015_FireDAC\Monitoring\db1.mdb';
- // ADConnection1.DriverName:='MSACC';
-{
-  cxLocalizer1.FileName:='DevExRus100Proc.ini';
- cxLocalizer1.Active:=true;
- cxLocalizer1.Locale:=1049;
-}
-{
-   sMyDocAppPath:=ExtractFilePath(Application.ExeName)+'\';
-if FileExists(sMyDocAppPath + 'DevExRus100Proc.ini') then
-  begin
-      cxLocalizer1.Active   := false;
-      cxLocalizer1.FileName := sMyDocAppPath + 'DevExRus100Proc.ini';
-      cxLocalizer1.Active   := True;
+  { TODO 1 -oSVS -cDebug : WebUpdateForm_Show }
+  //  WebUpdateForm_Show;
 
-      if FileExists(sMyDocAppPath + 'lang.ini') then
-        with TIniFile.Create(sMyDocAppPath + 'lang.ini') do
-        begin
-          cxLocalizer1.Locale := ReadInteger('LANG', 'Locale', GetThreadLocale);//если пользователь ещё не указал, то берём локаль винды
-          free;
-        end//with
-      else
-        cxLocalizer1.Locale := GetThreadLocale;//если пользователь ещё не указал, то берём локаль винды
-  end;//if FileExists(sMyDocAppPath + 'Lang\lang.ini') then
+   // ADConnection1.Params.Text:='DSN=dbtemp'+#13#10+'User_Name=Admin' + 'Database=C:\Nir2015_FireDAC\Monitoring\db1.mdb';
+   // ADConnection1.DriverName:='MSACC';
+  {
+    cxLocalizer1.FileName:='DevExRus100Proc.ini';
+   cxLocalizer1.Active:=true;
+   cxLocalizer1.Locale:=1049;
+  }
+  {
+     sMyDocAppPath:=ExtractFilePath(Application.ExeName)+'\';
+  if FileExists(sMyDocAppPath + 'DevExRus100Proc.ini') then
+    begin
+        cxLocalizer1.Active   := false;
+        cxLocalizer1.FileName := sMyDocAppPath + 'DevExRus100Proc.ini';
+        cxLocalizer1.Active   := True;
 
-  if cxLocalizer1.Locale = 0 then
-    cxLocalizer1.Locale := GetThreadLocale;
-}
-//EXIT;
-  //siLangDispatcher1.FileName:= ExtractFilePath(Application.ExeName) + 'ru.sil';
-  //siLangDispatcher1.LoadAllFromFile(siLangDispatcher1.FileName);
-  //siLangDispatcher1.SaveAllToFile(siLangDispatcher1.FileName, '~!@#');
+        if FileExists(sMyDocAppPath + 'lang.ini') then
+          with TIniFile.Create(sMyDocAppPath + 'lang.ini') do
+          begin
+            cxLocalizer1.Locale := ReadInteger('LANG', 'Locale', GetThreadLocale);//если пользователь ещё не указал, то берём локаль винды
+            free;
+          end//with
+        else
+          cxLocalizer1.Locale := GetThreadLocale;//если пользователь ещё не указал, то берём локаль винды
+    end;//if FileExists(sMyDocAppPath + 'Lang\lang.ini') then
+
+    if cxLocalizer1.Locale = 0 then
+      cxLocalizer1.Locale := GetThreadLocale;
+  }
+  //EXIT;
+    //siLangDispatcher1.FileName:= ExtractFilePath(Application.ExeName) + 'ru.sil';
+    //siLangDispatcher1.LoadAllFromFile(siLangDispatcher1.FileName);
+    //siLangDispatcher1.SaveAllToFile(siLangDispatcher1.FileName, '~!@#');
 
   Init;
 end;
- 
+
 procedure TDM.SetConnection;
 var
-  strTmp: string; //ovTmp: OleVariant;
+  //strTmp: string; //ovTmp: OleVariant;
   ConnectionString: string;
   Section, Ident, Default: string;
   i: integer;
@@ -236,157 +244,40 @@ var
   IniFile: TIniFile; //CommonUnit
   IniFileName: string; //CommonUnit
   tmpB: Boolean;
+  PathToBD: string; //
 begin
   IniFileName := ChangeFileExt(Forms.Application.ExeName, '.ini');
   IniFile := TIniFile.Create(IniFileName);
 
-
   UniConnection1.Disconnect;
-  strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
 
-/// <author>.</author>
-  strTmp:=IniFile.ReadString('ConnectionString', 'ConnectionString', strTmp);
-  strConnection_Set(IniFile.ReadString('ConnectionString', 'ConnectionString', strTmp) );
-  if ( FileExists(strTmp)) then  begin
-     strConnection_Set(strTmp);
+  PathToBD := ExtractFilePath(Application.ExeName) + 'r.mdb';
+  if (FileExists(PathToBD)) then
+  begin
+    strConnection_Set(PathToBD);
   end
-  else begin
-     strTmp := ExtractFilePath(Application.ExeName) + 'r1.mdb';
-     if ( FileExists(strTmp)) then  begin
-        strConnection_Set(strTmp);
-     end
-     else begin
-            Application.MessageBox('Не определена строка ConnectionString: ', PAnsiChar(strConnection_Get), MB_OK +
-              MB_ICONWARNING + MB_TOPMOST);
-              {
-            //MessageDlg('Не определена строка ConnectionString', mtWarning, [mbOK], 0);
-            //jvdyncontrolengine defaultdyncontrolengine not defined
-            // https://forums.embarcadero.com/thread.jspa?threadID=227492
-            }                                 
-          end
-  end;
-  Data_Source :=  ExtractFilePath(strTmp);
-
-{
-  strConnection   := '\\SRV-NIIPIIT\r\bin\r1.mdb';
-  strConnection   := '\\192.168.80.10\r\bin\r1.mdb';
-  strConnection   := 'C:\github\report\report\bin\r1.mdb';
-}
-
+  else
+  begin
+    PathToBD := IniFile.ReadString('ConnectionString', 'ConnectionString', PathToBD);
+    if (FileExists(PathToBD)) then
+    begin
+      strConnection_Set(PathToBD);
+    end
+    else
+    begin
+      Application.MessageBox('Не определена строка ConnectionString: ',
+        PAnsiChar(strConnection_Get), MB_OK + MB_ICONWARNING + MB_TOPMOST);
+    end;
+   end;
+  {
+    strConnection   := '\\SRV-NIIPIIT\r\bin\r1.mdb';
+    strConnection   := '\\192.168.80.10\r\bin\r1.mdb';
+    strConnection   := 'C:\github\report\report\bin\r1.mdb';
+  }
   UniConnection1.Database := strConnection_Get;
   tmpB := UniConnection1.Connected;
   UniConnection1.Connect;
-
-exit;
-  TestADO();
-  //GetDBPath;
-  Data_Source := DBFileName;
-
-
-
-
-//////////////////////////////////////////////////////////
-  Section := 'ModeConnectionStringMake';
-  Ident := 'UDL';
-  i := ord(csUDL); //?
-  //MethodMakeConnectionString:=csSelfMakeConnectionString;//csUDL;
-  iDefault := ord(csUDL); //TMethodMakeConnectionString=(csSelfMakeConnectionString,csUDL,csINI
-  //iDefault := utility.INI(IniFile, 'TEST', 'TEST', 2);//IniFile.UpdateFile;  IniFile.UpdateFile;
-  i := IniFile.ReadInteger(Section, Ident, iDefault);
-  IniFile.WriteInteger(Section, Ident, i);
-  MethodMakeConnectionString := TMethodMakeConnectionString(i); //csUDL;
-{
-  iINI := DataIniFile.ReadInteger(Section, 'INI', 0);
-  DataIniFile.WriteInteger(Section, 'INI', iINI);
-                                       }
-  case MethodMakeConnectionString of
-    csINI:
-      begin
-        ConnectionString := '';
-        Section := 'ConnectionString';
-        Ident := 'ConnectionString'; Default := '';
-        ConnectionString := IniFile.ReadString(Section, Ident, Default);
-        ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;';
-          //Password="";User ID=Admin;';
-        ConnectionString := ConnectionString + 'Password="";'; //--
-        ConnectionString := ConnectionString + 'User ID=' + User_ID + ';';
-        ConnectionString := ConnectionString + 'Data Source=' + Data_Source + ';';
-        ConnectionString := ConnectionString +
-          'Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";';
-        ConnectionString := ConnectionString + 'Jet OLEDB:Database Password=' +
-          Word2 + ';'; //--
-        ConnectionString := ConnectionString +
-          'Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;';
-        ConnectionString := ConnectionString +
-          'Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don''t Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;';
-        ConnectionString := ConnectionString + 'Jet OLEDB:SFP=False';
-      end; //csINI:
-    csUDL:
-      begin
-      //'FILE NAME=C:\Program Files\Common Files\SYSTEM\ole db\Data Links\Data.udl'
-        SetCurrentDir(ExtractFilePath(Application.ExeName) + '\');
-        strTmp := GetCurrentDir;
-        NameUDLFile := ChangeFileExt(Application.ExeName, '.udl');
-        NameUDLFile := ExtractFilePath(Application.ExeName) + '\'
-          + ChangeFileExt(ExtractFileName(Application.ExeName), '.udl');
-
-        ConnectionString := ''; //ExtractFilePath //ExtractFileDir
-        ConnectionString := 'FILE NAME=' + NameUDLFile;
-      end; //csUDL
-    csSelfMakeConnectionString:
-      begin
-        ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;';
-        ConnectionString := ConnectionString + 'Password="";'; //--
-        ConnectionString := ConnectionString + 'User ID=Admin;'; //'User ID=' + User_ID + ';';
-        ConnectionString := ConnectionString + 'Data Source=' + Data_Source + ';';
-        ConnectionString := ConnectionString +
-          'Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";';
-        ConnectionString := ConnectionString + 'Jet OLEDB:Database Password=' +
-          Word2 + ';'; //--
-        ConnectionString := ConnectionString +
-          'Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;';
-        ConnectionString := ConnectionString +
-          'Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don''t Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;';
-        ConnectionString := ConnectionString + 'Jet OLEDB:SFP=False';
-      //DBFileName := utility.INI(IniFile, 'ConnectionString', 'DBFileName', DBFileName);
-
-        ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;';
-        ConnectionString := ConnectionString + 'User ID=Admin;';
-        ConnectionString := ConnectionString + 'Data Source=' + Data_Source + ';';
-        ConnectionString := ConnectionString + 'JPersist Security Info=False';
-
-
-        IniFile.WriteString('ConnectionString', 'DBFileName', DBFileName);
-      end; //csSelfMakeConnectionString:
-  else
-    MessageDlg('Не определен метод формирования ConnectionString', mtWarning, [mbOK], 0);
-  end; //case
-//
-{
-  ConnectionString := '';
-  ConnectionString :=
-    'Provider=Microsoft.Jet.OLEDB.4.0;Password="";User ID=Admin;';
-  ConnectionString := ConnectionString +
-    'Data Source=' + Data_Source + ';';
-  ConnectionString := ConnectionString +
-    'Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;';
-  ConnectionString := ConnectionString +
-    'Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don''t Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;';
-  ConnectionString := ConnectionString + 'Jet OLEDB:SFP=False';
-}
-{
-  ADOConnection1.Close;
-  ADOConnection1.ConnectionString := ConnectionString;
-  try
-    ADOConnection1.Open; //ADOConnection1.mode;
-  except
-    MessageDlg('ADOConnection: проблема соединения с базой данных' + #13 +
-      'ADOConnection...' + #13
-      + ADOConnection1.ConnectionString, mtError, [mbOk], 0); //Abort;
-  end;
-}
-end;
-//SetConnection
+end; //SetConnection
 
 procedure TDM.RefreshDB(DataSet: TDataSet);
 var
@@ -398,7 +289,8 @@ begin
   SavePlace := DataSet.GetBookmark;
   CloseDB(DataSet);
   OpenDB(DataSet);
-  if DataSet.BookmarkValid(SavePlace) then { TODO : if DataSet.BookmarkValid(SavePlace) }
+  if DataSet.BookmarkValid(SavePlace) then
+    { TODO : if DataSet.BookmarkValid(SavePlace) }
   begin
     DataSet.GotoBookmark(SavePlace);
   end;
@@ -422,45 +314,46 @@ begin
 end; //CloseAllDB
 
 procedure TDM.OpenDB(DataSet: TDataSet);
-var iTmp: Integer;
+var
+  iTmp: Integer;
 begin
-   //AddToLog(format(‘unit1,sameFoo, a=%d, b=%f’,[a,b]));
-    AddToLog(format('unit= %s',[Self.Name]));
+  //AddToLog(format(‘unit1,sameFoo, a=%d, b=%f’,[a,b]));
+  AddToLog(format('unit= %s', [Self.Name]));
 
   try
     DataSet.Close;
-{
-    DataSet.MaxRecords := MaxRecords; // TODO : DataSet.MaxRecords:=MaxRecords
-    DataSet.CursorLocation := CursorLocation;
-    DataSet.CursorType := CursorType;
-    DataSet.LockType := LockType;
-    DataSet.MarshalOptions := MarshalOptions;
-}
+    {
+        DataSet.MaxRecords := MaxRecords; // TODO : DataSet.MaxRecords:=MaxRecords
+        DataSet.CursorLocation := CursorLocation;
+        DataSet.CursorType := CursorType;
+        DataSet.LockType := LockType;
+        DataSet.MarshalOptions := MarshalOptions;
+    }
     DataSet.Open;
-{
-    case DataSet.CursorLocation of
-      clUseClient:
-        begin
-          //'Update Resync' //adResyncUnderlyingValues = 1; -def //adResyncAllValues = 2;
-          iTmp := DataSet.Properties['Update Resync'].Value;
-          DataSet.Properties['Update Resync'].Value := adResyncAutoIncrement +
-            adResyncUpdates + adResyncInserts + adResyncConflicts;
-          iTmp := DataSet.Properties['Update Resync'].Value;
+    {
+        case DataSet.CursorLocation of
+          clUseClient:
+            begin
+              //'Update Resync' //adResyncUnderlyingValues = 1; -def //adResyncAllValues = 2;
+              iTmp := DataSet.Properties['Update Resync'].Value;
+              DataSet.Properties['Update Resync'].Value := adResyncAutoIncrement +
+                adResyncUpdates + adResyncInserts + adResyncConflicts;
+              iTmp := DataSet.Properties['Update Resync'].Value;
 
-          //'Update Criteria'//adCriteriaUpdCols = 2; -def //adCriteriaAllCols = 1;//adCriteriaKey = 0;
-          iTmp := DataSet.Properties['Update Criteria'].Value;
-          DataSet.Properties['Update Criteria'].Value := adCriteriaKey;
-          //adCriteriaAllCols;
-          iTmp := DataSet.Properties['Update Criteria'].Value;
-        end;
-      clUseServer:
-        begin
-          //DataSet.Properties['Update Resync'].Value:=ResyncValue;
-          //DataSet.Properties['Update Criteria'].Value:=UpdateCriteria;
-        end;
-    else ;
-    end; // case DataSet.CursorLocation
-}
+              //'Update Criteria'//adCriteriaUpdCols = 2; -def //adCriteriaAllCols = 1;//adCriteriaKey = 0;
+              iTmp := DataSet.Properties['Update Criteria'].Value;
+              DataSet.Properties['Update Criteria'].Value := adCriteriaKey;
+              //adCriteriaAllCols;
+              iTmp := DataSet.Properties['Update Criteria'].Value;
+            end;
+          clUseServer:
+            begin
+              //DataSet.Properties['Update Resync'].Value:=ResyncValue;
+              //DataSet.Properties['Update Criteria'].Value:=UpdateCriteria;
+            end;
+        else ;
+        end; // case DataSet.CursorLocation
+    }
     DataSet.BlockReadSize := BlockReadSize; //0
     //DataSet.CacheSize := CacheSize; //1
     //DataSet.Prepared:=true;//1
@@ -551,13 +444,13 @@ begin
   OpenAllDb;
 end;
 
-
 procedure TDM.qryDescription0WillChangeRecord(DataSet: TDataSet;
   const Reason: TEventReason; const RecordCount: Integer;
   var EventStatus: TEventStatus);
 begin
-  if Reason = erUndoUpdate then begin ///в случае ошибки
-         //ReadUnderlyingValues; ///показываем причину конфликта
+  if Reason = erUndoUpdate then
+  begin ///в случае ошибки
+    //ReadUnderlyingValues; ///показываем причину конфликта
     WillChangeRecord(DataSet, Reason, RecordCount, EventStatus);
     EventStatus := esCancel; //....и прото отменяем обновление
   end;
@@ -570,40 +463,40 @@ var
   i: integer;
   MessageString: OleVariant;
 begin
-{эта процедура вызывается при ошибке, связанной с
-конкурирующим обновлением при оптимистической блокировке
-если установленно свойство Update Resync равное adResyncConflicts
-то значения каждого поля записи, вызвавшей конфликт помещаются
-в свойство UnderlyingValue каждого поля
-здесь мы попросту показываем их}
-{
-  MessageString := 'Произошел конфликт! Данные на сервере уже изменены!' + #10 + #10;
-  MessageString := 'Исходные данные <=> Попытка изменения <=> Данные на сервере' + #10 + #10;
-//ShowMessage(String(MessageString)); Exit;
-  for i := 1 to DataSet.Recordset.Fields.Count - 1 do
-  begin
-   ////перебираем поля не с нуля а с 1 - нулевое поле - автоинкремент
-    MessageString := MessageString + DataSet.Recordset.Fields[i].OriginalValue;
-    MessageString := MessageString + '   <==>  ';
-    MessageString := MessageString + DataSet.Recordset.Fields[i].Value;
-    MessageString := MessageString + '   <==>  ';
-    MessageString := MessageString + DataSet.Recordset.Fields[i].UnderlyingValue + #10;
+  {эта процедура вызывается при ошибке, связанной с
+  конкурирующим обновлением при оптимистической блокировке
+  если установленно свойство Update Resync равное adResyncConflicts
+  то значения каждого поля записи, вызвавшей конфликт помещаются
+  в свойство UnderlyingValue каждого поля
+  здесь мы попросту показываем их}
+  {
+    MessageString := 'Произошел конфликт! Данные на сервере уже изменены!' + #10 + #10;
+    MessageString := 'Исходные данные <=> Попытка изменения <=> Данные на сервере' + #10 + #10;
+  //ShowMessage(String(MessageString)); Exit;
+    for i := 1 to DataSet.Recordset.Fields.Count - 1 do
+    begin
+     ////перебираем поля не с нуля а с 1 - нулевое поле - автоинкремент
+      MessageString := MessageString + DataSet.Recordset.Fields[i].OriginalValue;
+      MessageString := MessageString + '   <==>  ';
+      MessageString := MessageString + DataSet.Recordset.Fields[i].Value;
+      MessageString := MessageString + '   <==>  ';
+      MessageString := MessageString + DataSet.Recordset.Fields[i].UnderlyingValue + #10;
 
-    DataSet.Recordset.Fields[i].Value := DataSet.Recordset.Fields[i].UnderlyingValue;
-  end;
-  ShowMessage(string(MessageString));
-}
+      DataSet.Recordset.Fields[i].Value := DataSet.Recordset.Fields[i].UnderlyingValue;
+    end;
+    ShowMessage(string(MessageString));
+  }
 end;
 
-  procedure TDM.strConnection_Set(astrConnection:string);
-  begin
-    strConnection := astrConnection;
-  end;
+procedure TDM.strConnection_Set(astrConnection: string);
+begin
+  strConnection := astrConnection;
+end;
 
-  function TDM.strConnection_Get: string;
-  begin
-    Result := strConnection;
-  end;
+function TDM.strConnection_Get: string;
+begin
+  Result := strConnection;
+end;
 
 function TDM.GetDBPath: boolean;
 begin
@@ -649,7 +542,6 @@ begin
   end;
 end; //GetDBPath
 
-
 /////////////////////////////////////////////////////////////////////////////
 
 procedure TDM.start;
@@ -666,17 +558,17 @@ begin
 
   ConnectionString := ''; //ExtractFilePath //ExtractFileDir
   ConnectionString := 'FILE NAME=' + NameUDLFile;
-{
-  ADOConnection1.Close;
-  ADOConnection1.ConnectionString := ConnectionString;
-  try
-    ADOConnection1.Open; //ADOConnection1.mode;
-  except
-    MessageDlg('ADOConnection: проблема соединения с базой данных' + #13 +
-      'ADOConnection...' + #13
-      + ADOConnection1.ConnectionString, mtError, [mbOk], 0); //Abort;
-  end;
-}
+  {
+    ADOConnection1.Close;
+    ADOConnection1.ConnectionString := ConnectionString;
+    try
+      ADOConnection1.Open; //ADOConnection1.mode;
+    except
+      MessageDlg('ADOConnection: проблема соединения с базой данных' + #13 +
+        'ADOConnection...' + #13
+        + ADOConnection1.ConnectionString, mtError, [mbOk], 0); //Abort;
+    end;
+  }
 
 end; //start;///////////////////////////////////////////////////////////
 
@@ -693,28 +585,29 @@ end;
 procedure TDM.AfterPost(DataSet: TDataSet);
 begin
   Exit;
-//DSAMessageDlg(0, ' (Flag_EndOfTime = True)' + #13#10 + '', mtInformation, [], 0, dckScreen, 3);
+  //DSAMessageDlg(0, ' (Flag_EndOfTime = True)' + #13#10 + '', mtInformation, [], 0, dckScreen, 3);
   Application.MessageBox('изменения посланы в СУБД    ', 'СУБД', MB_OK +
     MB_ICONINFORMATION + MB_TOPMOST);
-// добавить JvDSADialogs ?
+  // добавить JvDSADialogs ?
 end;
 
 procedure TDM.BeforePost(DataSet: TDataSet);
 begin
   Exit;
-//<проверка введенных данных>
+  //<проверка введенных данных>
   if (True) then
   begin
     if Application.MessageBox(
       'Хотите занести текущую запись в базу данных?',
       'Подтвердите сохранение изменений',
-      MB_YESNOCANCEL + MB_ICONQUESTION) <> IDYES
-      then begin
+      MB_YESNOCANCEL + MB_ICONQUESTION) <> IDYES then
+    begin
       DataSet.Cancel;
-    //Abort;
+      //Abort;
     end
   end
-  else begin
+  else
+  begin
     Application.MessageBox('Ошибочные данные',
       'Исправьте ошибку',
       MB_OK + MB_ICONEXCLAMATION);
@@ -736,10 +629,9 @@ end;
 
 procedure TDM.tblJpgAfterPost(DataSet: TDataSet);
 begin
- //
+  //
   RefreshDB(DataSet);
 end;
-
 
 procedure TDM.Init;
 var
@@ -749,13 +641,18 @@ begin
   SetConnection;
 
   A := nil;
-{ TODO -oSVS -cмодификация таблиц : добавить новые таблицы }
+  { TODO -oSVS -cмодификация таблиц : добавить новые таблицы }
 
-  SetLength(A, Length(A) + 1); A[High(A)] := DM.tblReport2;
-  SetLength(A, Length(A) + 1); A[High(A)] := DM.tblDepart;
-  SetLength(A, Length(A) + 1); A[High(A)] := DM.tblJpg;
-  SetLength(A, Length(A) + 1); A[High(A)] := DM.tblEmpl;
-  SetLength(A, Length(A) + 1); A[High(A)] := DM.tblReportFiltr2;
+  SetLength(A, Length(A) + 1);
+  A[High(A)] := DM.tblReport2;
+  SetLength(A, Length(A) + 1);
+  A[High(A)] := DM.tblDepart;
+  SetLength(A, Length(A) + 1);
+  A[High(A)] := DM.tblJpg;
+  SetLength(A, Length(A) + 1);
+  A[High(A)] := DM.tblEmpl;
+  SetLength(A, Length(A) + 1);
+  A[High(A)] := DM.tblReportFiltr2;
 
   //DM.tblNorm.Open;
   //tblNormOfBilding.Open;
@@ -769,12 +666,16 @@ begin
 
   TOP := utility.INI(IniFile, 'DataSet', 'TOP', 500); //
 
-  CursorLocation := utility.INI(IniFile, 'DataSet', 'CursorLocation', clUseClient); //
+  CursorLocation := utility.INI(IniFile, 'DataSet', 'CursorLocation',
+    clUseClient); //
   CursorType := utility.INI(IniFile, 'DataSet', 'CursorType', ctDynamic); //
   LockType := utility.INI(IniFile, 'DataSet', 'LockType', ltOptimistic); //
-  MarshalOptions := utility.INI(IniFile, 'DataSet', 'MarshalOptions', moMarshalModifiedOnly); //
-  ResyncValue := utility.INI(IniFile, 'DataSet', 'ResyncValue', ADOint.adResyncAll); //
-  UpdateCriteria := utility.INI(IniFile, 'DataSet', 'UpdateCriteria', adCriteriaKey); //
+  MarshalOptions := utility.INI(IniFile, 'DataSet', 'MarshalOptions',
+    moMarshalModifiedOnly); //
+  ResyncValue := utility.INI(IniFile, 'DataSet', 'ResyncValue',
+    ADOint.adResyncAll); //
+  UpdateCriteria := utility.INI(IniFile, 'DataSet', 'UpdateCriteria',
+    adCriteriaKey); //
 
   MaxRecords := utility.INI(IniFile, 'DataSet', 'MaxRecords', 0); //
   BlockReadSize := utility.INI(IniFile, 'DataSet', 'BlockReadSize', 0); //
@@ -784,7 +685,8 @@ begin
 
   //MaxRecords := 1;  OpenDB(adsBlob);
 
-  ProcessDL := utility.INI(IniFile, 'DL', 'ProcessDL', false); //DataIniFile.UpdateFile;
+  ProcessDL := utility.INI(IniFile, 'DL', 'ProcessDL', false);
+  //DataIniFile.UpdateFile;
   ProcessDL := True; // ???
   if ProcessDL then
   begin
@@ -796,11 +698,60 @@ begin
   //DM.tblVypoln.Parameters[1].Value := '*' ;
 end; //Init
 
-procedure TDM.tblReportFiltr2FilterRecord(DataSet: TDataSet; var Accept:
-    Boolean);
+procedure TDM.tblReport2BeforePost(DataSet: TDataSet);
 begin
-//
+  tblReport2_SetCompName(DataSet);
 end;
+
+procedure TDM.tblReport2UpdateRecord(DataSet: TDataSet; UpdateKind:
+    TUpdateKind; var UpdateAction: TUpdateAction);
+begin
+  tblReport2_SetCompName(DataSet);
+end;
+
+procedure TDM.tblReportFiltr2FilterRecord(DataSet: TDataSet; var Accept:
+  Boolean);
+begin
+  //
+end;
+
+procedure TDM.tblReport2_SetCompName(DataSet: TDataSet);
+var
+    strTmp :string;
+  MibArr: TMIBIfArray;
+  IP: string;
+  Index:Integer;
+  Date :TDateTime;
+  Year,Month,Day:Word;
+begin
+// strngfldReport2ComputerName
+  strTmp:=JvJCLUtils.GetComputerName;
+  DataSet.edit;  //DataSet.State;
+  DataSet.FieldByName('Edit_ComputerName').AsString :=JvJCLUtils.GetComputerName;
+
+  // strngfldReport2LocalUserName
+  strTmp:=JclSysInfo.GetLocalUserName;
+  DataSet.edit;  //DataSet.State;
+  DataSet.FieldByName('Edit_LocalUserName').AsString := JclSysInfo.GetLocalUserName;
+
+// strngfldReport2IP
+  // IPHelper, IPHLPAPI;
+  Get_IfTableMIB(MibArr);
+  Index:=0;
+  IP:= GetIPByIndex(MibArr[Index].dwIndex);
+
+  IP:= GetLocalIP;
+  DataSet.edit;  //DataSet.State;
+  DataSet.FieldByName('Edit_IP').AsString :=  IP;
+
+// dtmfldReport2Date  
+  Date := Now;
+  DecodeDate(Date,Year,Month,Day);
+  DataSet.edit;  //DataSet.State;
+  DataSet.FieldByName('Edit_Date').AsDateTime :=  Date;
+
+end;
+
 
 initialization
 
@@ -816,7 +767,6 @@ end.
   //else ;
   end;
 }
-
 
 {
 Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\My Dropbox\Share\Work\Тестирование сэу\db.mdb;Mode=ReadWrite;Extended Properties="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False

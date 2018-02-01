@@ -1,39 +1,47 @@
 inherited FormTuning: TFormTuning
-  Left = 261
-  Top = 259
+  Left = 323
+  Top = 254
   Width = 640
   Height = 480
   Caption = 'tuning'
   Position = poDesktopCenter
-  OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 17
   object actmmb1: TActionMainMenuBar [0]
     Left = 0
     Top = 0
-    Width = 624
-    Height = 51
+    Width = 632
+    Height = 125
     UseSystemFont = False
     ActionManager = actmgr1
     Caption = 'actmmb1'
-    ColorMap.HighlightColor = clWhite
+    ColorMap.HighlightColor = 14410210
     ColorMap.BtnSelectedColor = clBtnFace
-    ColorMap.UnusedColor = clWhite
+    ColorMap.UnusedColor = 14410210
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
+    Font.Height = -16
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
   end
   object btn1: TButton [1]
-    Left = 10
-    Top = 60
-    Width = 131
-    Height = 25
+    Left = 13
+    Top = 78
+    Width = 171
+    Height = 33
     Caption = #1048#1084#1087#1086#1088#1090' '#1076#1072#1085#1085#1099#1093
     TabOrder = 1
     Visible = False
+  end
+  object Button1: TButton [2]
+    Left = 373
+    Top = 296
+    Width = 75
+    Height = 25
+    Caption = 'btn1'
+    TabOrder = 2
+    OnClick = Button1Click
   end
   inherited jvfrmstrg1: TJvFormStorage
     Active = True
@@ -68,6 +76,10 @@ inherited FormTuning: TFormTuning
           end
           item
             Action = actImport
+          end
+          item
+            Action = actFolder
+            Caption = '&actFolder'
           end>
         ActionBar = actmmb1
       end>
@@ -99,6 +111,10 @@ inherited FormTuning: TFormTuning
     end
     object actImport: TAction
       Caption = #1048#1084#1087#1086#1088#1090' '#1076#1072#1085#1085#1099#1093
+    end
+    object actFolder: TAction
+      Caption = 'actFolder'
+      OnExecute = actFolderExecute
     end
   end
   object actlst1: TActionList

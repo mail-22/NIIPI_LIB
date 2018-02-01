@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 510
-  Top = 292
+  Left = 232
+  Top = 244
   Height = 458
   Width = 760
   object OpenDialog1: TOpenDialog
@@ -21,7 +21,7 @@ object DM: TDM
   end
   object UniConnection1: TUniConnection
     ProviderName = 'Access'
-    Database = 'C:\github\NIIPI_LIB\BiN\r1.mdb'
+    Database = 'C:\github\NIIPI_LIB\BiN\r.mdb'
     DefaultTransaction = UniTransaction1
     Username = 'admin'
     Password = '1'
@@ -253,14 +253,16 @@ object DM: TDM
         ', basis, basis_N, basis_ffile, b_Avtor, b_Data, b_Year, b_Month,' +
         ' b_Abstract, `b_Volum'#1077'`, b_Tags, b_Zaglavie, L_Nomer_Ucheta, L_s' +
         'hifr_temy, L_UDK, L_Year, L_Nazvanie, L_Razmer, L_Spisok_Avtorov' +
-        ', L_Kluchevye_poly, mesto, otvetstven)'
+        ', L_Kluchevye_poly, mesto, otvetstven, Edit_ComputerName, Edit_L' +
+        'ocalUserName, Edit_IP, Edit_Date)'
       'VALUES'
       
         '  (:type_task_i, :type_task_str, :department, :responsible, :dea' +
         'dline, :basis, :basis_N, :basis_ffile, :b_Avtor, :b_Data, :b_Yea' +
         'r, :b_Month, :b_Abstract, :`b_Volum'#1077'`, :b_Tags, :b_Zaglavie, :L_' +
         'Nomer_Ucheta, :L_shifr_temy, :L_UDK, :L_Year, :L_Nazvanie, :L_Ra' +
-        'zmer, :L_Spisok_Avtorov, :L_Kluchevye_poly, :mesto, :otvetstven)')
+        'zmer, :L_Spisok_Avtorov, :L_Kluchevye_poly, :mesto, :otvetstven,' +
+        ' :Edit_ComputerName, :Edit_LocalUserName, :Edit_IP, :Edit_Date)')
     SQLDelete.Strings = (
       'DELETE FROM r1'
       'WHERE'
@@ -278,7 +280,9 @@ object DM: TDM
         'heta = :L_Nomer_Ucheta, L_shifr_temy = :L_shifr_temy, L_UDK = :L' +
         '_UDK, L_Year = :L_Year, L_Nazvanie = :L_Nazvanie, L_Razmer = :L_' +
         'Razmer, L_Spisok_Avtorov = :L_Spisok_Avtorov, L_Kluchevye_poly =' +
-        ' :L_Kluchevye_poly, mesto = :mesto, otvetstven = :otvetstven'
+        ' :L_Kluchevye_poly, mesto = :mesto, otvetstven = :otvetstven, Ed' +
+        'it_ComputerName = :Edit_ComputerName, Edit_LocalUserName = :Edit' +
+        '_LocalUserName, Edit_IP = :Edit_IP, Edit_Date = :Edit_Date'
       'WHERE'
       '  id = :Old_id')
     SQLLock.Strings = (
@@ -293,12 +297,15 @@ object DM: TDM
         'line, basis, basis_N, basis_ffile, b_Avtor, b_Data, b_Year, b_Mo' +
         'nth, b_Abstract, `b_Volum'#1077'`, b_Tags, b_Zaglavie, L_Nomer_Ucheta,' +
         ' L_shifr_temy, L_UDK, L_Year, L_Nazvanie, L_Razmer, L_Spisok_Avt' +
-        'orov, L_Kluchevye_poly, mesto, otvetstven FROM r1'
+        'orov, L_Kluchevye_poly, mesto, otvetstven, Edit_ComputerName, Ed' +
+        'it_LocalUserName, Edit_IP, Edit_Date FROM r1'
       'WHERE'
       '  id = :id')
     Connection = UniConnection1
     SQL.Strings = (
       'select * from r1;')
+    OnUpdateRecord = tblReport2UpdateRecord
+    BeforePost = tblReport2BeforePost
     Left = 224
     Top = 40
     object tblReport2id: TIntegerField
@@ -440,12 +447,29 @@ object DM: TDM
       Size = 255
     end
     object strngfldReport2mesto: TStringField
+      DisplayLabel = #1052#1077#1089#1090#1086' '#1093#1088#1072#1085#1077#1085#1080#1103
       FieldName = 'mesto'
       Size = 255
     end
     object strngfldReport2otvetstven: TStringField
+      DisplayLabel = #1054#1090#1074#1077#1090#1089#1090#1074#1077#1085#1085#1099#1081' '#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1100
       FieldName = 'otvetstven'
       Size = 255
+    end
+    object strngfldReport2Edit_ComputerName: TStringField
+      FieldName = 'Edit_ComputerName'
+      Size = 255
+    end
+    object strngfldReport2Edit_LocalUserName: TStringField
+      FieldName = 'Edit_LocalUserName'
+      Size = 255
+    end
+    object strngfldReport2Edit_IP: TStringField
+      FieldName = 'Edit_IP'
+      Size = 255
+    end
+    object dtmfldReport2Edit_Date: TDateTimeField
+      FieldName = 'Edit_Date'
     end
   end
   object tblReportFiltr2: TUniQuery

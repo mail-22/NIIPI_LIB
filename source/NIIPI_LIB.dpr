@@ -34,7 +34,10 @@ uses
   MailFormUnit in 'MailFormUnit.pas' {MailForm},
   MailEditFormUnit in 'MailEditFormUnit.pas' {MailEditForm},
   SystemDirs in 'SystemDirs.pas',
-  WebUpdateUnit in 'WebUpdateUnit.pas' {WebUpdateForm};
+  WebUpdateUnit in 'WebUpdateUnit.pas' {WebUpdateForm},
+  IPHelper in 'IPHelper.pas',
+  IPHLPAPI in 'IPHLPAPI.pas',
+  IP_Unit in 'IP_Unit.pas' {IP_Form};
 
 {$R *.res}
 
@@ -44,6 +47,5 @@ begin
   Application.CreateForm(TCommon, Common);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFormMain, FormMain);
-  Application.CreateForm(TWebUpdateForm, WebUpdateForm);
   Application.Run;
 end.

@@ -8,7 +8,7 @@ uses
   XPStyleActnCtrls
   ,ShellAPI, JvAppStorage, JvAppIniStorage, JvComponentBase,
   JvFormPlacement, StdCtrls, cxPropertiesStore
-  , utility;
+  , utility, cxClasses;
 
 type
   TFormTuning = class(TBaseForm)
@@ -23,11 +23,14 @@ type
     cxprprtstr1: TcxPropertiesStore;
     actXLS: TAction;
     actImport: TAction;
+    actFolder: TAction;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure acBackExecute(Sender: TObject);
     procedure actConnExecute(Sender: TObject);
+    procedure actFolderExecute(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,6 +51,7 @@ uses MainUnit, CommonUnit;
 {$R *.dfm}
 
 procedure TFormTuning.FormCreate(Sender: TObject);
+var  tmpStr : string;
 begin
   inherited;
 
@@ -55,6 +59,8 @@ begin
 
     //FormTuning.WindowState :=  wsNormal;
     cxprprtstr1.StorageName:=ExtractFilePath(Application.ExeName) + Self.Name +'.'+ 'cxprprtstr1.ini';
+  tmpStr :=  '_' + Self.Name+ '_' + 'cxprprtstr1'+ '_';
+  cxprprtstr1.StorageName:=   ChangeFileExt2(tmpStr);
     AFileName := cxprprtstr1.StorageName;
     if not FileExists(AFileName) then begin
        cxprprtstr1.StoreTo(True);
@@ -93,27 +99,41 @@ begin
 ShellExecute(0, 'open', pan, '', '', SW_SHOWNORMAL);
 end;
 
+procedure TFormTuning.actFolderExecute(Sender: TObject);
+var
+
+strTmp :string;
+NameUDLFile   :string;
+pan:PAnsiChar ;
+begin
+  inherited;
+      strTmp:=GetProfileFolder;
+      SetCurrentDir(ExtractFilePath(Application.ExeName)  +'\');
+      strTmp := GetCurrentDir;
+      NameUDLFile := ChangeFileExt(Application.ExeName ,'.udl');
+      NameUDLFile := ExtractFilePath(Application.ExeName)  +'\'
+                + ChangeFileExt(ExtractFileName(Application.ExeName) , '.udl');
+      pan :=  PChar (strTmp);
+ShellExecute(0, 'open', pan, '', '', SW_SHOWNORMAL);
+
+end;
+
+procedure TFormTuning.Button1Click(Sender: TObject);
+var  
+strTmp :string;
+NameUDLFile   :string;
+pan:PAnsiChar ;
+begin
+      strTmp:=GetProfileFolder;
+      pan :=  PChar (strTmp);
+ShellExecute(0, 'open', pan, '', '', SW_SHOWNORMAL);
+end;
+
+
 procedure TFormTuning.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
    inherited;
    cxprprtstr1.StoreTo(True);
-end;
-
-procedure TFormTuning.FormShow(Sender: TObject);
-begin
-  inherited;
-exit;
-  //
-    FormTuning.WindowState :=  wsNormal;
-    cxprprtstr1.StorageName:=ExtractFilePath(Application.ExeName) + Self.Name +'.'+ 'cxprprtstr1.ini';
-    AFileName := cxprprtstr1.StorageName;
-    if not FileExists(AFileName) then begin
-       cxprprtstr1.StoreTo(True);
-    end
-    else begin
-      cxprprtstr1.RestoreFrom;
-    end;
-    FormTuning.WindowState :=  wsNormal;
 end;
 
 function FileCopy(Source, Destination: string): boolean;
