@@ -88,7 +88,7 @@ var //DataSet:TCustomADODataSet;
 begin
                 //RichEdit.Lines.Clear;
                 //RichEdit.Lines.Append('Добавляемая строка');
-  DataSet := DM.tblReportFiltr2;
+  //DataSet := DM.tblReportFiltr2;
   DataSet.Open;
   s1 := '';
   FreeAndNil(arrX);
@@ -190,7 +190,9 @@ begin
     RichEdit.Lines.Clear;
                 //RichEdit.Lines.Append('Добавляемая строка');
     s1 := ''; NNBilding := 0;
-    DataSetMaster := DM.tblReportFiltr2;
+
+    //DataSetMaster := DM.tblReportFiltr2;
+
     i := DataSetMaster.FieldCount;
     i := DataSetMaster.RecNo;
     SaveRecNo := DataSetMaster.RecNo;
@@ -230,7 +232,8 @@ var //DataSet:TCustomADODataSet;
 begin
   Exit;
 
-  DataSetDetail := DM.tblReportFiltr2;
+  //DataSetDetail := DM.tblReportFiltr2;
+
   RichEdit :=ExportXLSForm.redt1;
 
   s1 := '';
@@ -345,7 +348,8 @@ var //DataSet:TCustomADODataSet;
   NNTrebovan: Integer;
     strBool: string;
 begin
-  DataSetDetail := DM.tblReportFiltr2;
+  //DataSetDetail := DM.tblReportFiltr2;
+
   RichEdit := Self.redt1;
                 //RichEdit.Lines.Append('Добавляемая строка');
   s1 := '';
@@ -397,7 +401,8 @@ var //DataSet:TCustomADODataSet;
   NNTrebovan: Integer;
     strBool: string;
 begin
-  DataSetDetail := DM.tblReportFiltr2;
+  //DataSetDetail := DM.tblReportFiltr2;
+
   RichEdit := ExportXLSForm.redt1;
                 //RichEdit.Lines.Append('Добавляемая строка');
   s1 := '';
@@ -452,7 +457,8 @@ var //DataSet:TCustomADODataSet;
     strBool: string;
 r, c:integer;
 begin
-  DataSetDetail := DM.tblReportFiltr2;
+ // DataSetDetail := DM.tblReportFiltr2;
+
   RichEdit := self.redt1;
                 //RichEdit.Lines.Append('Добавляемая строка');
   s1 := '';
@@ -581,7 +587,8 @@ begin
     RichEdit.Lines.Clear;
                 //RichEdit.Lines.Append('Добавляемая строка');
     s1 := '';
-    DataSetMaster := DM.tblReportFiltr2;
+    //DataSetMaster := DM.tblReportFiltr2;
+    
     iTmp := DataSetMaster.FieldCount;
     iTmp := DataSetMaster.RecNo;
     SaveRecNo := DataSetMaster.RecNo;

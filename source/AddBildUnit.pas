@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cxPropertiesStore, StdCtrls, ExtCtrls, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxEdit, cxMRUEdit,
-  cxVGrid, cxDBVGrid, cxInplaceContainer, utility;
+  cxVGrid, cxDBVGrid, cxInplaceContainer, utility, dxSkinsCore,
+  dxSkinOffice2007Blue, cxClasses;
 
 type
   TAddBildForm = class(TForm)

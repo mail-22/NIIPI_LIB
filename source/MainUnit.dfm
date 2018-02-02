@@ -2159,12 +2159,10 @@ inherited FormMain: TFormMain
     object actNir: TAction
       Caption = #1053#1048#1056
       Hint = #1091#1095#1077#1090' '#1088#1072#1073#1086#1090' '#1087#1086' '#1053#1048#1056
-      OnExecute = actNirExecute
     end
     object actMail: TAction
       Caption = #1055#1080#1089#1100#1084#1072
       Hint = #1091#1095#1077#1090' '#1088#1072#1073#1086#1090' '#1089' '#1087#1080#1089#1100#1084#1072#1084#1080
-      OnExecute = actMailExecute
     end
   end
   object jvplctnhtky1: TJvApplicationHotKey

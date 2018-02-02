@@ -42,7 +42,6 @@ inherited SelDepForm: TSelDepForm
       Height = 25
       KeyField = 'id'
       ListField = 'depart'
-      ListSource = DM.dsDepart
       TabOrder = 1
     end
   end
@@ -88,7 +87,6 @@ inherited SelDepForm: TSelDepForm
       end>
   end
   object ds1: TDataSource
-    DataSet = DM.tblDepart
     Left = 428
     Top = 396
   end

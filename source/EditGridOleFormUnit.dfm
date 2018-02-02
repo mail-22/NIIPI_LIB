@@ -27,8 +27,9 @@ inherited EditGridJOleForm: TEditGridJOleForm
     object cxdbnvgtr1: TcxDBNavigator
       Left = 324
       Top = 2
-      Width = 480
+      Width = 482
       Height = 33
+      Buttons.CustomButtons = <>
       DataSource = DM.dsJpg
       Align = alClient
       TabOrder = 0
@@ -104,15 +105,15 @@ inherited EditGridJOleForm: TEditGridJOleForm
   end
   object cxSplitter1: TcxSplitter [3]
     Left = 0
-    Top = 115
+    Top = 86
     Width = 10
-    Height = 404
+    Height = 433
   end
   object pnlL: TPanel [4]
     Left = 10
-    Top = 115
+    Top = 86
     Width = 810
-    Height = 404
+    Height = 433
     Align = alClient
     Caption = 'pnlL'
     TabOrder = 3
@@ -120,11 +121,11 @@ inherited EditGridJOleForm: TEditGridJOleForm
       Left = 1
       Top = 71
       Width = 808
-      Height = 332
+      Height = 361
       Align = alClient
       TabOrder = 0
       object cxgrdbtblvwGrid1DBTableView1: TcxGridDBTableView
-        NavigatorButtons.ConfirmDelete = False
+        Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = DM.dsJpg
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
@@ -211,7 +212,7 @@ inherited EditGridJOleForm: TEditGridJOleForm
     Left = 0
     Top = 59
     Width = 820
-    Height = 56
+    Height = 27
     ActionManager = actmgr1
     Caption = 'acttb2'
     ColorMap.HighlightColor = 14410210

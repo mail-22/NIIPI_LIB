@@ -25,7 +25,6 @@ type
     ActionManager1: TActionManager;
     acttb2: TActionToolBar;
     cxdbvrtclgrd1department: TcxDBEditorRow;
-    cxdbvrtclgrd1DepartL: TcxDBEditorRow;
     cxdbvrtclgrd1deadline: TcxDBEditorRow;
     cxdbvrtclgrd1type_task_i: TcxDBEditorRow;
     cxdbvrtclgrd1type_task_str: TcxDBEditorRow;

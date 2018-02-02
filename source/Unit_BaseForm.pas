@@ -10,8 +10,6 @@ uses
 
 type
   TBaseForm = class(TForm)
-    jvfrmstrg1: TJvFormStorage;
-    jvpnflstrg1: TJvAppIniFileStorage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -44,11 +42,9 @@ end;
 procedure TBaseForm.FormCreate(Sender: TObject);
 var strTmp:string ;
 begin
-
    //jvpnflstrg1
-   jvfrmstrg1.Active := False;
-   strTmp:=jvpnflstrg1.FileName;
-
+   //jvfrmstrg1.Active := False;
+   //strTmp:=jvpnflstrg1.FileName;   
 end;
 
 end.

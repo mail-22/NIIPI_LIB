@@ -19,10 +19,6 @@ type
     UniConnection1: TUniConnection;
     AccessUniProvider1: TAccessUniProvider;
     UniTransaction1: TUniTransaction;
-    tblDepart: TUniQuery;
-    intgrfld1: TIntegerField;
-    strngfldunqry1depart: TStringField;
-    dsDepart: TDataSource;
     tblJpg: TUniQuery;
     dsJpg: TDataSource;
     intgrfldJpgid: TIntegerField;
@@ -30,43 +26,19 @@ type
     strngfldJpgtext1: TStringField;
     intgrfldJpgidR1: TIntegerField;
     blbfldJpgole: TBlobField;
-    tblEmpl: TUniQuery;
-    intgrfld2: TIntegerField;
-    ds1: TDataSource;
-    intgrfldEmplid_depart: TIntegerField;
-    dsReportFiltr: TDataSource;
     tblReport2: TUniQuery;
     tblReport2id: TIntegerField;
-    tblReport2department: TStringField;
-    DepartL: TStringField;
-    tblReport2basis: TStringField;
-    tblReport2deadline: TDateTimeField;
-    tblReport2responsible: TStringField;
-    tblReport2basis_ffile: TIntegerField;
     strngfldJpgfilename: TStringField;
     strngfldJpgfilepath: TStringField;
     strngfldJpgext: TStringField;
     strngfldJpgUniqueName: TStringField;
-    tblReportFiltr2: TUniQuery;
-    IntegerField1: TIntegerField;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    StringField3: TStringField;
-    IntegerField2: TIntegerField;
-    DateTimeField1: TDateTimeField;
-    StringField6: TStringField;
     tblTypeOfDoc: TStringField;
-    strngfldEmplsurname: TStringField;
-    strngfldReport2basis_N: TStringField;
-    strngfldReport2type_task_i: TStringField;
-    strngfldReport2type_task_str: TStringField;
     strngfldReport2b_Avtor: TStringField;
     dtmfldReport2b_Data: TDateTimeField;
     intgrfldReport2b_Year: TIntegerField;
     strngfldReport2b_Month: TStringField;
     strngfldReport2b_Abstract: TStringField;
     intgrfldReport2b_Volum: TIntegerField;
-    strngfldReport2b_Tags: TStringField;
     strngfldReport2b_Zaglavie: TStringField;
     tblReport2L_Nomer_Ucheta: TStringField;
     tblReport2L_shifr_temy: TStringField;
@@ -248,7 +220,7 @@ var
 begin
   IniFileName := ChangeFileExt(Forms.Application.ExeName, '.ini');
   IniFile := TIniFile.Create(IniFileName);
-               
+
   UniConnection1.Disconnect;
 
   PathToBD := ExtractFilePath(Application.ExeName) + 'r.mdb';
@@ -646,13 +618,7 @@ begin
   SetLength(A, Length(A) + 1);
   A[High(A)] := DM.tblReport2;
   SetLength(A, Length(A) + 1);
-  A[High(A)] := DM.tblDepart;
-  SetLength(A, Length(A) + 1);
   A[High(A)] := DM.tblJpg;
-  SetLength(A, Length(A) + 1);
-  A[High(A)] := DM.tblEmpl;
-  SetLength(A, Length(A) + 1);
-  A[High(A)] := DM.tblReportFiltr2;
 
   //DM.tblNorm.Open;
   //tblNormOfBilding.Open;
@@ -684,7 +650,7 @@ begin
   OpenAllDB;
 
   //MaxRecords := 1;  OpenDB(adsBlob);
-
+{ TODO -oSVS -clds : .lds ? }
   ProcessDL := utility.INI(IniFile, 'DL', 'ProcessDL', false);
   //DataIniFile.UpdateFile;
   ProcessDL := True; // ???

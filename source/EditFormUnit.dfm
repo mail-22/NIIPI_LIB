@@ -81,7 +81,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1deadline: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'deadline'
       Visible = False
-      ID = 4
+      ID = 3
       ParentID = -1
       Index = 3
       Version = 1
@@ -89,7 +89,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1type_task_i: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'type_task_i'
       Visible = False
-      ID = 5
+      ID = 4
       ParentID = -1
       Index = 4
       Version = 1
@@ -97,7 +97,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1type_task_str: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'type_task_str'
       Visible = False
-      ID = 6
+      ID = 5
       ParentID = -1
       Index = 5
       Version = 1
@@ -105,7 +105,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1basis: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'basis'
       Visible = False
-      ID = 7
+      ID = 6
       ParentID = -1
       Index = 6
       Version = 1
@@ -113,7 +113,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1basis_N: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'basis_N'
       Visible = False
-      ID = 8
+      ID = 7
       ParentID = -1
       Index = 7
       Version = 1
@@ -121,7 +121,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1basis_ffile: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'basis_ffile'
       Visible = False
-      ID = 9
+      ID = 8
       ParentID = -1
       Index = 8
       Version = 1
@@ -129,7 +129,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Avtor: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Avtor'
       Visible = False
-      ID = 10
+      ID = 9
       ParentID = -1
       Index = 9
       Version = 1
@@ -137,7 +137,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Data: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Data'
       Visible = False
-      ID = 11
+      ID = 10
       ParentID = -1
       Index = 10
       Version = 1
@@ -145,7 +145,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Year: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Year'
       Visible = False
-      ID = 12
+      ID = 11
       ParentID = -1
       Index = 11
       Version = 1
@@ -153,7 +153,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Month: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Month'
       Visible = False
-      ID = 13
+      ID = 12
       ParentID = -1
       Index = 12
       Version = 1
@@ -161,15 +161,15 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Abstract: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Abstract'
       Visible = False
-      ID = 14
+      ID = 13
       ParentID = -1
       Index = 13
       Version = 1
     end
     object cxdbvrtclgrd1b_Volum: TcxDBEditorRow
-      Properties.DataBinding.FieldName = 'b_Volum'#1077
+      Properties.DataBinding.FieldName = 'b_Volumе'
       Visible = False
-      ID = 15
+      ID = 14
       ParentID = -1
       Index = 14
       Version = 1
@@ -177,7 +177,7 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Tags: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Tags'
       Visible = False
-      ID = 16
+      ID = 15
       ParentID = -1
       Index = 15
       Version = 1
@@ -185,78 +185,78 @@ inherited EditForm: TEditForm
     object cxdbvrtclgrd1b_Zaglavie: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'b_Zaglavie'
       Visible = False
-      ID = 17
+      ID = 16
       ParentID = -1
       Index = 16
       Version = 1
     end
     object cxdbvrtclgrd1L_Nomer_Ucheta: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Nomer_Ucheta'
-      ID = 18
+      ID = 17
       ParentID = -1
       Index = 17
       Version = 1
     end
     object cxdbvrtclgrd1L_shifr_temy: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_shifr_temy'
-      ID = 19
+      ID = 18
       ParentID = -1
       Index = 18
       Version = 1
     end
     object cxdbvrtclgrd1L_UDK: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_UDK'
-      ID = 20
+      ID = 19
       ParentID = -1
       Index = 19
       Version = 1
     end
     object cxdbvrtclgrd1L_Year: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Year'
-      ID = 21
+      ID = 20
       ParentID = -1
       Index = 20
       Version = 1
     end
     object cxdbvrtclgrd1L_Nazvanie: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Nazvanie'
-      ID = 22
+      ID = 21
       ParentID = -1
       Index = 21
       Version = 1
     end
     object cxdbvrtclgrd1L_Razmer: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Razmer'
-      ID = 23
+      ID = 22
       ParentID = -1
       Index = 22
       Version = 1
     end
     object cxdbvrtclgrd1L_Spisok_Avtorov: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Spisok_Avtorov'
-      ID = 24
+      ID = 23
       ParentID = -1
       Index = 23
       Version = 1
     end
     object cxdbvrtclgrd1L_Kluchevye_poly: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'L_Kluchevye_poly'
-      ID = 25
+      ID = 24
       ParentID = -1
       Index = 24
       Version = 1
     end
     object cxdbdtrwcxdbvrtclgrd1DBEditorRow1: TcxDBEditorRow
       Properties.DataBinding.FieldName = 'mesto'
-      ID = 26
+      ID = 25
       ParentID = -1
       Index = 25
       Version = 1
     end
     object cxdbdtrwcxdbvrtclgrd1DBEditorRow2: TcxDBEditorRow
-      Properties.Caption = #1054#1090#1074#1077#1090#1089#1090#1074#1077#1085#1085#1099#1081
+      Properties.Caption = 'Ответственный'
       Properties.DataBinding.FieldName = 'otvetstven'
-      ID = 27
+      ID = 26
       ParentID = -1
       Index = 26
       Version = 1
@@ -270,7 +270,7 @@ inherited EditForm: TEditForm
     Align = alTop
     Alignment = taCenter
     Lines.Strings = (
-      #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1080#1085#1092#1086#1088#1084#1072#1094#1080#1080' '#1087#1086' '#1086#1073#1098#1077#1082#1090#1091' '#1073#1080#1073#1083#1080#1086#1090#1077#1095#1085#1086#1075#1086' '#1091#1095#1077#1090#1072' ')
+      'Редактирование информации по объекту библиотечного учета ')
     TabOrder = 2
   end
   object acttb2: TActionToolBar [3]
@@ -307,16 +307,7 @@ inherited EditForm: TEditForm
   object ActionManager1: TActionManager
     ActionBars = <
       item
-        Items = <
-          item
-            Action = GridForm.acOle
-          end>
         ActionBar = acttb2
-      end>
-    LinkedActionLists = <
-      item
-        ActionList = GridForm.actlst1
-        Caption = 'actlst1'
       end>
     Left = 528
     Top = 240

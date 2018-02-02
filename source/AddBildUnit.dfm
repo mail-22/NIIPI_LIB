@@ -57,9 +57,9 @@ object AddBildForm: TAddBildForm
     OptionsView.GridLineColor = clBlue
     OptionsView.RowHeaderWidth = 401
     OptionsBehavior.RowSizing = True
+    Navigator.Buttons.CustomButtons = <>
     ParentFont = False
     TabOrder = 1
-    DataController.DataSource = DM.dsBilding
     DataController.GridMode = True
     Version = 1
     object cxdbdtrwcxdbvrtclgrd1id: TcxDBEditorRow

@@ -7,7 +7,7 @@ inherited FormTuning: TFormTuning
   Position = poDesktopCenter
   PixelsPerInch = 96
   TextHeight = 17
-  object actmmb1: TActionMainMenuBar [0]
+  object actmmb1: TActionMainMenuBar
     Left = 0
     Top = 0
     Width = 632
@@ -25,7 +25,7 @@ inherited FormTuning: TFormTuning
     Font.Style = []
     Spacing = 0
   end
-  object btn1: TButton [1]
+  object btn1: TButton
     Left = 13
     Top = 78
     Width = 171
@@ -34,7 +34,7 @@ inherited FormTuning: TFormTuning
     TabOrder = 1
     Visible = False
   end
-  object Button1: TButton [2]
+  object Button1: TButton
     Left = 373
     Top = 296
     Width = 75
@@ -42,17 +42,6 @@ inherited FormTuning: TFormTuning
     Caption = 'btn1'
     TabOrder = 2
     OnClick = Button1Click
-  end
-  inherited jvfrmstrg1: TJvFormStorage
-    Active = True
-    Options = [fpState, fpSize, fpLocation]
-    Left = 100
-    Top = 250
-  end
-  inherited jvpnflstrg1: TJvAppIniFileStorage
-    AutoFlush = True
-    AutoReload = True
-    Top = 170
   end
   object actmgr1: TActionManager
     ActionBars = <

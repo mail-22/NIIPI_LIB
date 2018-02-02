@@ -69,10 +69,6 @@ begin
       cxprprtstr1.RestoreFrom;
     end;
     //FormTuning.WindowState :=  wsNormal;
-
-   jvfrmstrg1.Active := False ;
-   strTmp:=jvpnflstrg1.FileName;
-
 end;
 
 procedure TFormTuning.acBackExecute(Sender: TObject);

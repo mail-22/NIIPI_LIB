@@ -1,6 +1,6 @@
 object FormJPG: TFormJPG
-  Left = 807
-  Top = 303
+  Left = 190
+  Top = 266
   Width = 720
   Height = 604
   Caption = 'FormJPG'

@@ -5,12 +5,12 @@ inherited ExportXLSForm: TExportXLSForm
   Caption = 'ExportForm'
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
-  object redt1: TRichEdit [0]
+  TextHeight = 17
+  object redt1: TRichEdit
     Left = 0
-    Top = 29
-    Width = 624
-    Height = 533
+    Top = 38
+    Width = 632
+    Height = 535
     Align = alClient
     Lines.Strings = (
       'redt1')
@@ -18,11 +18,11 @@ inherited ExportXLSForm: TExportXLSForm
     TabOrder = 0
     Visible = False
   end
-  object actmmb1: TActionMainMenuBar [1]
+  object actmmb1: TActionMainMenuBar
     Left = 0
     Top = 0
-    Width = 624
-    Height = 29
+    Width = 632
+    Height = 38
     UseSystemFont = False
     Caption = 'actmmb1'
     ColorMap.HighlightColor = 14410210
@@ -30,7 +30,7 @@ inherited ExportXLSForm: TExportXLSForm
     ColorMap.UnusedColor = 14410210
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMenuText
-    Font.Height = -11
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     PersistentHotKeys = True

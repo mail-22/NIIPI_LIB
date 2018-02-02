@@ -10,7 +10,7 @@ uses
   cxLookAndFeelPainters, cxContainer, cxEdit, DBCtrls, cxTextEdit,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
   cxDBExtLookupComboBox, Grids, DBGrids, StdCtrls, cxListBox, cxDBEdit
-  , ExtCtrls, cxPropertiesStore  , utility     , CommonUnit
+  , ExtCtrls, cxPropertiesStore  , utility     , CommonUnit, cxClasses
    ;
 
 type
@@ -101,12 +101,6 @@ var
   strTmp:string;
 begin
   inherited;
-
-  DepDefaultID := DM.intgrfld1.AsInteger;
-  DepDefaultName := DM.strngfldunqry1depart.AsString;
-
-  CommonUnit.IniFile.WriteInteger( 'DepDefaultID', 'DepDefaultID', DepDefaultID);
-  CommonUnit.IniFile.WriteString( 'DepDefaultID', 'DepDefaultName', DepDefaultName);
 end;
 
 procedure TSelDepForm.FormCreate(Sender: TObject);
@@ -114,19 +108,7 @@ var
   strTmp:string; res:boolean;
 begin
   inherited;
-  strTmp := '-1';
-  strTmp := CommonUnit.IniFile.ReadString( 'DepDefaultID', 'DepDefaultID', strTmp); //
-  DepDefaultID:=StrToInt(strTmp);
-
-  DepDefaultName := CommonUnit.IniFile.ReadString( 'DepDefaultID', 'DepDefaultName', DepDefaultName);
-  DepDefaultID := CommonUnit.IniFile.ReadInteger( 'DepDefaultID', 'DepDefaultID', DepDefaultID);
-
-  DM.tblDepart.Locate('id', IntToStr(DepDefaultID), [loCaseInsensitive]);
-
-   edt1.text := dm.strConnection_Get;
-/////////////////////////
-
-
+  edt1.text := dm.strConnection_Get;
 end;
 
 procedure TSelDepForm.FormShow(Sender: TObject);
@@ -134,19 +116,6 @@ var
   strTmp:string;
 begin
   inherited;
-
-DBLookupComboBox1.KeyValue := DBLookupComboBox1.ListSource.DataSet.FieldByName(DBLookupComboBox1.KeyField).Value;
-
-  //AddBildForm.WindowState := wsMaximized;
-
-  DepDefaultID := DM.intgrfld1.AsInteger;
-  DepDefaultName := DM.strngfldunqry1depart.AsString;
-
-  strTmp := IntToStr(DepDefaultID);
-  CommonUnit.IniFile.WriteInteger( 'DepDefaultID', 'DepDefaultID', DepDefaultID);
-  CommonUnit.IniFile.WriteString( 'DepDefaultID', 'DepDefaultName', DepDefaultName);
-
-  //DM.tblDepart.
 end;
 
 end.

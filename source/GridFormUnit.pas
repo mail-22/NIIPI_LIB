@@ -61,15 +61,8 @@ type
     actTun: TAction;
     actEmpl: TAction;
     actSpisok: TAction;
-    cxgrdbtblvw1id: TcxGridDBColumn;
-    cxgrdbtblvw1department: TcxGridDBColumn;
-    cxgrdbtblvw1DepartL: TcxGridDBColumn;
-    cxgrdbtblvw1basis: TcxGridDBColumn;
-    cxgrdbtblvw1deadline: TcxGridDBColumn;
-    cxgrdbtblvw1responsible: TcxGridDBColumn;
     cxdbdtrwcxdbvrtclgrd1id: TcxDBEditorRow;
     cxdbdtrwcxdbvrtclgrd1department: TcxDBEditorRow;
-    cxdbdtrwcxdbvrtclgrd1DepartL: TcxDBEditorRow;
     cxdbdtrwcxdbvrtclgrd1basis: TcxDBEditorRow;
     cxdbdtrwcxdbvrtclgrd1basis_ffile: TcxDBEditorRow;
     cxdbdtrwcxdbvrtclgrd1contract_name: TcxDBEditorRow;
@@ -102,10 +95,13 @@ type
     cxprprtstr1: TcxPropertiesStore;
     cxgrd1DBBandedTableView1: TcxGridDBBandedTableView;
     cxgrdlvlcxgrd1Level1: TcxGridLevel;
-    cxgrdbndclmncxgrd1DBBandedTableView1id: TcxGridDBBandedColumn;
-    cxprprtstr2cxgrdbtblvw1: TcxPropertiesStore;
-    cxgrdbclmncxgrdbtblvw1basis_N: TcxGridDBColumn;
-    cxgrdbclmncxgrdbtblvw1basis_ffile: TcxGridDBColumn;
+    pnlFind: TPanel;
+    edtFind: TEdit;
+    btnFind: TButton;
+    mmo1: TMemo;
+    cxgrdbclmncxgrdbtblvw1id: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1responsible: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1deadline: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvw1b_Avtor: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvw1b_Data: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvw1b_Year: TcxGridDBColumn;
@@ -114,40 +110,45 @@ type
     cxgrdbclmncxgrdbtblvw1b_Volum: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvw1b_Tags: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvw1b_Zaglavie: TcxGridDBColumn;
-    cxgrd1DBBandedTableView1L_Nomer_Ucheta: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_shifr_temy: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_UDK: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_Year: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_Nazvanie: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_Razmer: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_Spisok_Avtorov: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1L_Kluchevye_poly: TcxGridDBBandedColumn;
-    cxgrdbtblvw1type_task_i: TcxGridDBColumn;
-    cxgrdbtblvw1type_task_str: TcxGridDBColumn;
-    cxgrdbtblvw1L_Nomer_Ucheta: TcxGridDBColumn;
-    cxgrdbtblvw1L_shifr_temy: TcxGridDBColumn;
-    cxgrdbtblvw1L_UDK: TcxGridDBColumn;
-    cxgrdbtblvw1L_Year: TcxGridDBColumn;
-    cxgrdbtblvw1L_Nazvanie: TcxGridDBColumn;
-    cxgrdbtblvw1L_Razmer: TcxGridDBColumn;
-    cxgrdbtblvw1L_Spisok_Avtorov: TcxGridDBColumn;
-    cxgrdbtblvw1L_Kluchevye_poly: TcxGridDBColumn;
-    pnlFind: TPanel;
-    edtFind: TEdit;
-    btnFind: TButton;
-    mmo1: TMemo;
-    cxgrdbndclmncxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn;
-    cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn;
-    cxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn;
-    cxgrdbndclmncxgrd1DBBandedTableView1Column3: TcxGridDBBandedColumn;
-    cxgrdbndclmncxgrd1DBBandedTableView1Column4: TcxGridDBBandedColumn;
-    cxgrdbndclmncxgrd1DBBandedTableView1Column5: TcxGridDBBandedColumn;    procedure actOleExecute(Sender: TObject);
+    cxgrdbclmncxgrdbtblvw1L_Nomer_Ucheta: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_shifr_temy: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_UDK: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_Year: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_Nazvanie: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_Razmer: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_Spisok_Avtorov: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1L_Kluchevye_poly: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1mesto: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1otvetstven: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1Edit_ComputerName: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1Edit_LocalUserName: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1Edit_IP: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvw1Edit_Date: TcxGridDBColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1id: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Avtor: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Data: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Year: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Month: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Abstract: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Volum: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1b_Zaglavie: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_Nomer_Ucheta: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_shifr_temy: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_UDK: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_Year: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_Nazvanie: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_Razmer: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_Spisok_Avtorov: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1L_Kluchevye_poly: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1mesto: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1otvetstven: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Edit_ComputerName: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Edit_LocalUserName: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Edit_IP: TcxGridDBBandedColumn;
+    cxgrdbndclmncxgrd1DBBandedTableView1Edit_Date: TcxGridDBBandedColumn;    procedure actOleExecute(Sender: TObject);
     procedure actAddExecute(Sender: TObject);
-    procedure actDepExecute(Sender: TObject);
     procedure actEditExecute(Sender: TObject);
-    procedure actEmplExecute(Sender: TObject);
     procedure actJpgExecute(Sender: TObject);
-    procedure actSpisokExecute(Sender: TObject);
     procedure actTunExecute(Sender: TObject);
     procedure btnFindClick(Sender: TObject);
     procedure edtFindChange(Sender: TObject);
@@ -159,13 +160,10 @@ type
     { Private declarations }
   public
     procedure AddMethod;
-    procedure DepMethod;
     procedure EditMethod;
     procedure JpgMethod;
     procedure OleMethod;
     procedure TunMethod;
-    procedure EmplMethod;
-    procedure SpisokMethod;
     procedure ExportXLSMethod;
     { Public declarations }
   end;
@@ -178,7 +176,8 @@ var
 
 implementation
 
-uses MainUnit, EditForm2Unit, LogicUnit, SelDepUnit, EditGridJpgFormUnit, EditGridOleFormUnit,  EditEmplFormUnit, SpisokUnit, ExportXLSFormUnit, EditFormUnit;
+uses MainUnit, LogicUnit, SelDepUnit,
+EditGridJpgFormUnit, EditGridOleFormUnit,  ExportXLSFormUnit, EditFormUnit;
 
 {$R *.dfm}
 
@@ -199,36 +198,16 @@ begin
   AddMethod;
 end;
 
-procedure TGridForm.actDepExecute(Sender: TObject);
-begin
-  DepMethod;
-end;
 
 procedure TGridForm.actEditExecute(Sender: TObject);
 begin
   EditMethod;
 end;
 
-procedure TGridForm.actEmplExecute(Sender: TObject);
-begin
-  inherited;
-  EmplMethod;
-end;
 
 procedure TGridForm.actJpgExecute(Sender: TObject);
 begin
   JpgMethod;
-end;
-
-procedure TGridForm.SpisokMethod;
-begin
-   SpisokForm_Show;
-end;
-
-procedure TGridForm.actSpisokExecute(Sender: TObject);
-begin
-  inherited;
-  SpisokMethod;
 end;
 
 procedure TGridForm.actTunExecute(Sender: TObject);
@@ -236,15 +215,7 @@ begin
    TunMethod;
 end;
 
-procedure TGridForm.DepMethod;
-begin
-   EditForm2_Show;
-end;
 
-procedure TGridForm.EmplMethod;
-begin
-   EditEmplForm_Show;
-end;
 
 procedure TGridForm.JpgMethod;
 begin
@@ -278,16 +249,6 @@ begin
     dm.UniTransaction1.StartTransaction;
 
     dm.tblReport2.Append;
-    // lookup field
-    DM.tblReport2department.AsInteger := DepDefaultID;   //department strngfldunqry1DSDesigner   strngfldReportDepartName
-    DM.DepartL.AsInteger := DepDefaultID;
-
-    DM.DepartL.AsInteger := DepDefaultID;
-    DM.DepartL.AsInteger := DepDefaultID;
-
-    dm.strngfldReport2type_task_str.AsString := cTask[Dogovor].strTypeOfTask;
-    dm.strngfldReport2type_task_i.AsInteger := Integer(cTask[Dogovor].TypeOfTask);
-
     dm.tblReport2.Post; // !!!
     dm.tblReport2.Edit;
 
@@ -433,17 +394,16 @@ begin
   FileName_cxprprtstr1 :=  ChangeFileExt2(tmpStr);
   cxprprtstr1.StorageName := FileName_cxprprtstr1 ;
   cxprprtstr1.RestoreFrom;
-  cxprprtstr1.Active := true; cxprprtstr1.RestoreFrom;
+  cxprprtstr1.Active := true;
+  cxprprtstr1.RestoreFrom;
 end;
 
 procedure TGridForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-
   cxgrdbtblvw1.StoreToIniFile(FileName_cxgrdbtblvw1, true);
   cxdbvrtclgrd1.StoreToIniFile(FileName_cxdbvrtclgrd1, true);
   cxgrd1DBBandedTableView1.StoreToIniFile(FileName_cxgrd1DBBandedTableView1, true);
-
   cxprprtstr1.StoreTo(True);
 end;
 

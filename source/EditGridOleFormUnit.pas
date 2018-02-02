@@ -325,47 +325,7 @@ begin
      Exit;
   end;
 
-  AddMethod;
-
-  if (TComponent(Sender).Name = actAddBasis.Name) then  // Основание для договора
-  begin
-    IncMethod(dm.tblReport2 , dm.tblReport2basis_ffile);
-    SetTypeOfDoc(dm.tblJpg ,  dm.tblTypeOfDoc ,  cDoc[Basic]);
-  end
-{  
-  else
-  if (TComponent(Sender).Name = acAddContract.Name) then   //Договор
-  begin
-    IncMethod(dm.tblReport2, dm.tblReport2contract_file);
-    SetTypeOfDoc(dm.tblJpg , dm.tblTypeOfDoc ,  cDoc[Contract]);
-  end else
-  if (TComponent(Sender).Name = actAddAct.Name) then  //Акт сдачи приемки
-  begin
-    IncMethod(dm.tblReport2, dm.tblReport2act_acceptance_file);
-    SetTypeOfDoc(dm.tblJpg , dm.tblTypeOfDoc ,  cDoc[Act]);
-  end else
-  if (TComponent(Sender).Name = actAddContrEx.Name) then   // Contract execution note  - Отметка о выполнении договора
-  begin
-    IncMethod(dm.tblReport2, dm.tblReport2contract_execution_file);
-    SetTypeOfDoc(dm.tblJpg , dm.tblTypeOfDoc ,  cDoc[Contract_Execution]);
-  end else
-  if (TComponent(Sender).Name = actAddInvoice.Name) then //  invoice - счет на оплату
-  begin
-    IncMethod(dm.tblReport2, dm.tblReport2invoice_file);
-    SetTypeOfDoc(dm.tblJpg , dm.tblTypeOfDoc ,  cDoc[Invoice]);
-  end
-  else
-  if (TComponent(Sender).Name = actAddPerf.Name) then   // Отметка о выполнении работы
-  begin
-    IncMethod(dm.tblReport2, dm.tblReport2performance_of_work_file);
-    SetTypeOfDoc(dm.tblJpg , dm.tblTypeOfDoc ,  cDoc[Performance]);
-  end
-}
-  else
-  begin
-    MessageDlg('неизвестный тип сопроводительного документа: ' + PAnsiChar(actAddPerf.Name),
-          mtWarning, [mbOK], 0)
-   end;
+  AddMethod;   
 
 end;  //  AddAnyDocMethod 
 

@@ -1,12 +1,12 @@
 inherited GridForm: TGridForm
-  Left = -309
-  Top = 372
+  Left = 147
+  Top = 296
   Width = 1359
   Height = 783
   Caption = ''
   PixelsPerInch = 96
   TextHeight = 17
-  object pnlT: TPanel [0]
+  object pnlT: TPanel
     Left = 0
     Top = 26
     Width = 1351
@@ -389,99 +389,80 @@ inherited GridForm: TGridForm
             OptionsView.Indicator = True
             OptionsView.IndicatorWidth = 24
             OptionsView.ShowColumnFilterButtons = sfbAlways
-            object cxgrdbtblvw1id: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1id: TcxGridDBColumn
               DataBinding.FieldName = 'id'
-              Width = 29
             end
-            object cxgrdbtblvw1department: TcxGridDBColumn
-              DataBinding.FieldName = 'department'
-              Width = 33
-            end
-            object cxgrdbtblvw1DepartL: TcxGridDBColumn
-              DataBinding.FieldName = 'DepartL'
-              Width = 33
-            end
-            object cxgrdbtblvw1basis: TcxGridDBColumn
-              DataBinding.FieldName = 'basis'
-              Width = 33
-            end
-            object cxgrdbtblvw1deadline: TcxGridDBColumn
-              DataBinding.FieldName = 'deadline'
-              Width = 33
-            end
-            object cxgrdbtblvw1responsible: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1responsible: TcxGridDBColumn
               DataBinding.FieldName = 'responsible'
-              Width = 33
             end
-            object cxgrdbclmncxgrdbtblvw1basis_N: TcxGridDBColumn
-              DataBinding.FieldName = 'basis_N'
-              Width = 33
-            end
-            object cxgrdbclmncxgrdbtblvw1basis_ffile: TcxGridDBColumn
-              DataBinding.FieldName = 'basis_ffile'
-              Width = 33
+            object cxgrdbclmncxgrdbtblvw1deadline: TcxGridDBColumn
+              DataBinding.FieldName = 'deadline'
             end
             object cxgrdbclmncxgrdbtblvw1b_Avtor: TcxGridDBColumn
               DataBinding.FieldName = 'b_Avtor'
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Data: TcxGridDBColumn
               DataBinding.FieldName = 'b_Data'
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Year: TcxGridDBColumn
               DataBinding.FieldName = 'b_Year'
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Month: TcxGridDBColumn
               DataBinding.FieldName = 'b_Month'
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Abstract: TcxGridDBColumn
               DataBinding.FieldName = 'b_Abstract'
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Volum: TcxGridDBColumn
               DataBinding.FieldName = 'b_Volum'#1077
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Tags: TcxGridDBColumn
               DataBinding.FieldName = 'b_Tags'
-              Width = 33
             end
             object cxgrdbclmncxgrdbtblvw1b_Zaglavie: TcxGridDBColumn
               DataBinding.FieldName = 'b_Zaglavie'
-              Width = 33
             end
-            object cxgrdbtblvw1type_task_i: TcxGridDBColumn
-              DataBinding.FieldName = 'type_task_i'
-            end
-            object cxgrdbtblvw1type_task_str: TcxGridDBColumn
-              DataBinding.FieldName = 'type_task_str'
-            end
-            object cxgrdbtblvw1L_Nomer_Ucheta: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_Nomer_Ucheta: TcxGridDBColumn
               DataBinding.FieldName = 'L_Nomer_Ucheta'
             end
-            object cxgrdbtblvw1L_shifr_temy: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_shifr_temy: TcxGridDBColumn
               DataBinding.FieldName = 'L_shifr_temy'
             end
-            object cxgrdbtblvw1L_UDK: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_UDK: TcxGridDBColumn
               DataBinding.FieldName = 'L_UDK'
             end
-            object cxgrdbtblvw1L_Year: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_Year: TcxGridDBColumn
               DataBinding.FieldName = 'L_Year'
             end
-            object cxgrdbtblvw1L_Nazvanie: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_Nazvanie: TcxGridDBColumn
               DataBinding.FieldName = 'L_Nazvanie'
             end
-            object cxgrdbtblvw1L_Razmer: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_Razmer: TcxGridDBColumn
               DataBinding.FieldName = 'L_Razmer'
             end
-            object cxgrdbtblvw1L_Spisok_Avtorov: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_Spisok_Avtorov: TcxGridDBColumn
               DataBinding.FieldName = 'L_Spisok_Avtorov'
             end
-            object cxgrdbtblvw1L_Kluchevye_poly: TcxGridDBColumn
+            object cxgrdbclmncxgrdbtblvw1L_Kluchevye_poly: TcxGridDBColumn
               DataBinding.FieldName = 'L_Kluchevye_poly'
+            end
+            object cxgrdbclmncxgrdbtblvw1mesto: TcxGridDBColumn
+              DataBinding.FieldName = 'mesto'
+            end
+            object cxgrdbclmncxgrdbtblvw1otvetstven: TcxGridDBColumn
+              DataBinding.FieldName = 'otvetstven'
+            end
+            object cxgrdbclmncxgrdbtblvw1Edit_ComputerName: TcxGridDBColumn
+              DataBinding.FieldName = 'Edit_ComputerName'
+            end
+            object cxgrdbclmncxgrdbtblvw1Edit_LocalUserName: TcxGridDBColumn
+              DataBinding.FieldName = 'Edit_LocalUserName'
+            end
+            object cxgrdbclmncxgrdbtblvw1Edit_IP: TcxGridDBColumn
+              DataBinding.FieldName = 'Edit_IP'
+            end
+            object cxgrdbclmncxgrdbtblvw1Edit_Date: TcxGridDBColumn
+              DataBinding.FieldName = 'Edit_Date'
             end
           end
           object cxgrd1DBBandedTableView1: TcxGridDBBandedTableView
@@ -516,6 +497,7 @@ inherited GridForm: TGridForm
               end
               item
                 Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077' , '#1086#1090#1076#1077#1083
+                Visible = False
                 Width = 88
               end
               item
@@ -523,98 +505,162 @@ inherited GridForm: TGridForm
               end>
             object cxgrdbndclmncxgrd1DBBandedTableView1id: TcxGridDBBandedColumn
               DataBinding.FieldName = 'id'
-              Width = 55
-              Position.BandIndex = -1
-              Position.ColIndex = -1
-              Position.RowIndex = -1
+              Width = 33
+              Position.BandIndex = 1
+              Position.ColIndex = 0
+              Position.RowIndex = 0
             end
-            object cxgrd1DBBandedTableView1L_Nomer_Ucheta: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_Nomer_Ucheta'
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Avtor: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Avtor'
+              Visible = False
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 0
               Position.RowIndex = 0
             end
-            object cxgrd1DBBandedTableView1L_shifr_temy: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_shifr_temy'
-              Position.BandIndex = 0
-              Position.ColIndex = 3
-              Position.RowIndex = 0
-            end
-            object cxgrd1DBBandedTableView1L_UDK: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_UDK'
-              Position.BandIndex = 0
-              Position.ColIndex = 2
-              Position.RowIndex = 0
-            end
-            object cxgrd1DBBandedTableView1L_Year: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_Year'
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Data: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Data'
+              Visible = False
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 1
               Position.RowIndex = 0
             end
-            object cxgrd1DBBandedTableView1L_Nazvanie: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_Nazvanie'
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Year: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Year'
+              Visible = False
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 2
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Month: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Month'
+              Visible = False
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 3
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Abstract: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Abstract'
+              Width = 33
+              Position.BandIndex = 1
+              Position.ColIndex = 1
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Volum: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Volum'#1077
+              Visible = False
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 4
               Position.RowIndex = 0
             end
-            object cxgrd1DBBandedTableView1L_Razmer: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_Razmer'
-              Position.BandIndex = 0
-              Position.ColIndex = 7
-              Position.RowIndex = 0
-            end
-            object cxgrd1DBBandedTableView1L_Spisok_Avtorov: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_Spisok_Avtorov'
+            object cxgrdbndclmncxgrd1DBBandedTableView1b_Zaglavie: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'b_Zaglavie'
+              Visible = False
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 5
               Position.RowIndex = 0
             end
-            object cxgrd1DBBandedTableView1L_Kluchevye_poly: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'L_Kluchevye_poly'
-              PropertiesClassName = 'TcxTextEditProperties'
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_Nomer_Ucheta: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_Nomer_Ucheta'
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 6
               Position.RowIndex = 0
             end
-            object cxgrdbndclmncxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'mesto'
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_shifr_temy: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_shifr_temy'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 7
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_UDK: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_UDK'
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 8
               Position.RowIndex = 0
             end
-            object cxgrdbndclmncxgrd1DBBandedTableView1Column2: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'otvetstven'
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_Year: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_Year'
+              Width = 33
               Position.BandIndex = 0
               Position.ColIndex = 9
               Position.RowIndex = 0
             end
-            object cxgrd1DBBandedTableView1Column1: TcxGridDBBandedColumn
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_Nazvanie: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_Nazvanie'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 10
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_Razmer: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_Razmer'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 11
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_Spisok_Avtorov: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_Spisok_Avtorov'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 12
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1L_Kluchevye_poly: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'L_Kluchevye_poly'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 13
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1mesto: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'mesto'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 14
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1otvetstven: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'otvetstven'
+              Width = 33
+              Position.BandIndex = 0
+              Position.ColIndex = 15
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Edit_ComputerName: TcxGridDBBandedColumn
               DataBinding.FieldName = 'Edit_ComputerName'
               Width = 33
               Position.BandIndex = 3
-              Position.ColIndex = 0
+              Position.ColIndex = 3
               Position.RowIndex = 0
             end
-            object cxgrdbndclmncxgrd1DBBandedTableView1Column3: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'Edit_Date'
-              Width = 33
-              Position.BandIndex = 3
-              Position.ColIndex = 1
-              Position.RowIndex = 0
-            end
-            object cxgrdbndclmncxgrd1DBBandedTableView1Column4: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'Edit_IP'
+            object cxgrdbndclmncxgrd1DBBandedTableView1Edit_LocalUserName: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_LocalUserName'
               Width = 33
               Position.BandIndex = 3
               Position.ColIndex = 2
               Position.RowIndex = 0
             end
-            object cxgrdbndclmncxgrd1DBBandedTableView1Column5: TcxGridDBBandedColumn
-              DataBinding.FieldName = 'Edit_LocalUserName'
+            object cxgrdbndclmncxgrd1DBBandedTableView1Edit_IP: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_IP'
               Width = 33
               Position.BandIndex = 3
-              Position.ColIndex = 3
+              Position.ColIndex = 1
+              Position.RowIndex = 0
+            end
+            object cxgrdbndclmncxgrd1DBBandedTableView1Edit_Date: TcxGridDBBandedColumn
+              DataBinding.FieldName = 'Edit_Date'
+              Width = 33
+              Position.BandIndex = 3
+              Position.ColIndex = 0
               Position.RowIndex = 0
             end
           end
@@ -698,7 +744,7 @@ inherited GridForm: TGridForm
       end
     end
   end
-  object actmmb1: TActionMainMenuBar [1]
+  object actmmb1: TActionMainMenuBar
     Left = 0
     Top = 0
     Width = 1351
@@ -716,7 +762,7 @@ inherited GridForm: TGridForm
     Font.Style = []
     Spacing = 0
   end
-  object jvstsbr1: TJvStatusBar [2]
+  object jvstsbr1: TJvStatusBar
     Left = 0
     Top = 737
     Width = 1351
@@ -724,7 +770,7 @@ inherited GridForm: TGridForm
     Panels = <>
     SimplePanel = True
   end
-  object dxstsbr1: TdxStatusBar [3]
+  object dxstsbr1: TdxStatusBar
     Left = 0
     Top = 717
     Width = 1351
@@ -736,7 +782,7 @@ inherited GridForm: TGridForm
     Font.Name = 'Tahoma'
     Font.Style = []
   end
-  object pnlFind: TPanel [4]
+  object pnlFind: TPanel
     Left = 555
     Top = 0
     Width = 473
@@ -770,10 +816,6 @@ inherited GridForm: TGridForm
         #1087#1086#1080#1089#1082' '#1087#1086' '#1082#1083#1102#1095#1077#1074#1099#1084' '#1087#1086#1083#1103#1084)
       TabOrder = 2
     end
-  end
-  inherited jvfrmstrg1: TJvFormStorage
-    Left = 120
-    Top = 20
   end
   object actmgr1: TActionManager
     ActionBars = <
@@ -825,7 +867,6 @@ inherited GridForm: TGridForm
     end
     object actDep: TAction
       Caption = #1057#1087#1080#1089#1086#1082' '#1086#1090#1076#1077#1083#1086#1074' '
-      OnExecute = actDepExecute
     end
     object actTun: TAction
       Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '
@@ -833,11 +874,9 @@ inherited GridForm: TGridForm
     end
     object actEmpl: TAction
       Caption = #1057#1087#1080#1089#1086#1082' '#1089#1086#1090#1088#1091#1076#1085#1080#1082#1086#1074
-      OnExecute = actEmplExecute
     end
     object actSpisok: TAction
       Caption = #1054#1090#1095#1077#1090#1099
-      OnExecute = actSpisokExecute
     end
   end
   object jvpvnts1: TJvAppEvents
@@ -846,7 +885,6 @@ inherited GridForm: TGridForm
     Top = 401
   end
   object cxprprtstr1: TcxPropertiesStore
-    Active = False
     Components = <
       item
         Component = cxspltr1
@@ -854,386 +892,22 @@ inherited GridForm: TGridForm
           'Left')
       end
       item
+        Component = Owner
+        Properties.Strings = (
+          'Height'
+          'Left'
+          'Position'
+          'Top'
+          'Width'
+          'WindowState')
+      end
+      item
         Component = pnlR
         Properties.Strings = (
           'Width')
       end>
     StorageName = 'cxprprtstr1'
-    Left = 778
-    Top = 433
-  end
-  object cxprprtstr2cxgrdbtblvw1: TcxPropertiesStore
-    Active = False
-    Components = <
-      item
-        Component = cxgrd1
-        Properties.Strings = (
-          'Align'
-          'Anchors'
-          'BevelEdges'
-          'BevelInner'
-          'BevelKind'
-          'BevelOuter'
-          'BevelWidth'
-          'BorderStyle'
-          'BorderWidth'
-          'Constraints'
-          'Cursor'
-          'DragCursor'
-          'DragKind'
-          'DragMode'
-          'DragOpening'
-          'DragOpeningWaitTime'
-          'Enabled'
-          'Font'
-          'Height'
-          'HelpContext'
-          'HelpKeyword'
-          'HelpType'
-          'Hint'
-          'Left'
-          'LevelTabs'
-          'LookAndFeel'
-          'Name'
-          'ParentFont'
-          'PopupMenu'
-          'RootLevelOptions'
-          'RootLevelStyles'
-          'TabOrder'
-          'TabStop'
-          'Tag'
-          'Top'
-          'Visible'
-          'Width')
-      end
-      item
-        Component = cxgrd1DBBandedTableView1
-        Properties.Strings = (
-          'BackgroundBitmaps'
-          'Bands'
-          'DataController'
-          'DateTimeHandling'
-          'DragMode'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FilterBox'
-          'Filtering'
-          'FilterRow'
-          'Name'
-          'NavigatorButtons'
-          'NewItemRow'
-          'OptionsBehavior'
-          'OptionsCustomize'
-          'OptionsData'
-          'OptionsSelection'
-          'OptionsView'
-          'PopupMenu'
-          'Preview'
-          'Styles'
-          'Synchronization'
-          'Tag')
-      end
-      item
-        Component = cxgrdbndclmncxgrd1DBBandedTableView1id
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Position'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdbtblvw1
-        Properties.Strings = (
-          'BackgroundBitmaps'
-          'DataController'
-          'DateTimeHandling'
-          'DragMode'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FilterBox'
-          'Filtering'
-          'FilterRow'
-          'Name'
-          'NavigatorButtons'
-          'NewItemRow'
-          'OptionsBehavior'
-          'OptionsCustomize'
-          'OptionsData'
-          'OptionsSelection'
-          'OptionsView'
-          'PopupMenu'
-          'Preview'
-          'Styles'
-          'Synchronization'
-          'Tag')
-      end
-      item
-        Component = cxgrdbtblvw1basis
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdbtblvw1deadline
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdbtblvw1DepartL
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdbtblvw1department
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdbtblvw1id
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdbtblvw1responsible
-        Properties.Strings = (
-          'AlternateCaption'
-          'BestFitMaxWidth'
-          'Caption'
-          'DataBinding'
-          'DateTimeGrouping'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'FooterAlignmentHorz'
-          'GroupIndex'
-          'GroupSummaryAlignment'
-          'HeaderAlignmentHorz'
-          'HeaderAlignmentVert'
-          'HeaderGlyph'
-          'HeaderGlyphAlignmentHorz'
-          'HeaderGlyphAlignmentVert'
-          'MinWidth'
-          'Name'
-          'Options'
-          'Properties'
-          'PropertiesClassName'
-          'RepositoryItem'
-          'SortIndex'
-          'SortOrder'
-          'Styles'
-          'Summary'
-          'Tag'
-          'Visible'
-          'VisibleForCustomization'
-          'Width')
-      end
-      item
-        Component = cxgrdlvl1
-        Properties.Strings = (
-          'Caption'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'GridView'
-          'ImageIndex'
-          'MaxDetailHeight'
-          'Name'
-          'Options'
-          'Styles'
-          'Tag'
-          'Visible')
-      end
-      item
-        Component = cxgrdlvlcxgrd1Level1
-        Properties.Strings = (
-          'Caption'
-          'FakeComponentLink1'
-          'FakeComponentLink2'
-          'FakeComponentLink3'
-          'GridView'
-          'ImageIndex'
-          'MaxDetailHeight'
-          'Name'
-          'Options'
-          'Styles'
-          'Tag'
-          'Visible')
-      end>
-    StorageName = 'cxprprtstr2cxgrdbtblvw1'
-    Left = 994
-    Top = 465
+    Left = 234
+    Top = 345
   end
 end
