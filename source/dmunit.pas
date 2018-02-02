@@ -650,7 +650,7 @@ begin
   OpenAllDB;
 
   //MaxRecords := 1;  OpenDB(adsBlob);
-{ TODO -oSVS -clds : .lds ? }
+
   ProcessDL := utility.INI(IniFile, 'DL', 'ProcessDL', false);
   //DataIniFile.UpdateFile;
   ProcessDL := True; // ???
